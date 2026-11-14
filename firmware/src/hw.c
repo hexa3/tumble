@@ -62,8 +62,63 @@ static void gpio(void)
     pin(GPIOA, 10, AF, 6, 0, 1);               /* pin 6: I2C1_SDA */
 }
 
+/* ------------------------------------------------------------------ I2C1, 400 kHz from HSI16 */
+#define I2C_TIMEOUT 4000
+
+static int wait(uint32_t mask)
+{
+    for (uint32_t t = 0; t < I2C_TIMEOUT; t++) {
+        if (I2C1->ISR & I2C_ISR_NACKF) { I2C1->ICR = I2C_ICR_NACKCF | I2C_ICR_STOPCF; return -1; }
+        if (I2C1->ISR & mask) return 0;
+    }
+    return -2;
+}
+
+static int i2c_write(void *ctx, uint8_t addr, const uint8_t *buf, size_t n)
+{
+    (void)ctx;
+    if (n > 255) return -3;
+    I2C1->CR2 = ((uint32_t)addr << 1) | ((uint32_t)n << I2C_CR2_NBYTES_Pos) | I2C_CR2_AUTOEND | I2C_CR2_START;
+    for (size_t i = 0; i < n; i++) {
+        if (wait(I2C_ISR_TXIS)) return -1;
+        I2C1->TXDR = buf[i];
+    }
+    if (wait(I2C_ISR_STOPF)) return -1;
+    I2C1->ICR = I2C_ICR_STOPCF;
+    return 0;
+}
+
+static int i2c_read(void *ctx, uint8_t addr, uint8_t reg, uint8_t *buf, size_t n)
+{
+    (void)ctx;
+    I2C1->CR2 = ((uint32_t)addr << 1) | (1u << I2C_CR2_NBYTES_Pos) | I2C_CR2_START;
+    if (wait(I2C_ISR_TXIS)) return -1;
+    I2C1->TXDR = reg;
+    if (wait(I2C_ISR_TC)) return -1;
+    I2C1->CR2 = ((uint32_t)addr << 1) | ((uint32_t)n << I2C_CR2_NBYTES_Pos) | I2C_CR2_RD_WRN |
+                I2C_CR2_AUTOEND | I2C_CR2_START;
+    for (size_t i = 0; i < n; i++) {
+        if (wait(I2C_ISR_RXNE)) return -1;
+        buf[i] = (uint8_t)I2C1->RXDR;
+    }
+    if (wait(I2C_ISR_STOPF)) return -1;
+    I2C1->ICR = I2C_ICR_STOPCF;
+    return 0;
+}
+
+static void i2c_delay(void *ctx, uint32_t ms) { (void)ctx; hw_delay_ms(ms); }
+const i2c_bus_t hw_i2c = {i2c_write, i2c_read, i2c_delay, 0};
+
+static void i2c_init(void)
+{
+    I2C1->CR1 = 0;
+    I2C1->TIMINGR = 0x10320309;     /* 16 MHz I2CCLK, Fast-mode 400 kHz (reference-manual timing example) */
+    I2C1->CR1 = I2C_CR1_PE;
+}
+
 void hw_init(void)
 {
     clocks();
     gpio();
+    i2c_init();
 }
