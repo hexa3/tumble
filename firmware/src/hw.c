@@ -62,6 +62,30 @@ static void gpio(void)
     pin(GPIOA, 10, AF, 6, 0, 1);               /* pin 6: I2C1_SDA */
 }
 
+/* ------------------------------------------------------------------ USART2, single wire, 115200 */
+static void uart_init(void)
+{
+    USART2->CR1 = 0;
+    USART2->BRR = 64000000u / 115200u;
+    USART2->CR3 = USART_CR3_HDSEL;
+    USART2->CR1 = USART_CR1_TE | USART_CR1_RE | USART_CR1_UE;
+}
+
+int hw_uart_getc(void)
+{
+    if (USART2->ISR & USART_ISR_ORE) USART2->ICR = USART_ICR_ORECF;
+    return (USART2->ISR & USART_ISR_RXNE_RXFNE) ? (int)(USART2->RDR & 0xFF) : -1;
+}
+
+void hw_uart_puts(const char *s)
+{
+    while (*s) {
+        while (!(USART2->ISR & USART_ISR_TXE_TXFNF)) {}
+        USART2->TDR = (uint8_t)*s++;
+    }
+    while (!(USART2->ISR & USART_ISR_TC)) {}
+}
+
 /* ------------------------------------------------------------------ I2C1, 400 kHz from HSI16 */
 #define I2C_TIMEOUT 40000
 
@@ -120,5 +144,6 @@ void hw_init(void)
 {
     clocks();
     gpio();
+    uart_init();
     i2c_init();
 }
