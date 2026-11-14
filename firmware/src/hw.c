@@ -63,7 +63,7 @@ static void gpio(void)
 }
 
 /* ------------------------------------------------------------------ I2C1, 400 kHz from HSI16 */
-#define I2C_TIMEOUT 4000
+#define I2C_TIMEOUT 40000
 
 static int wait(uint32_t mask)
 {
