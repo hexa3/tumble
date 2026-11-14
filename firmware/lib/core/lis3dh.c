@@ -1,0 +1,48 @@
+#include "lis3dh.h"
+
+#define R_WHO_AM_I 0x0F
+#define R_CTRL1 0x20
+#define R_CTRL2 0x21
+#define R_CTRL3 0x22
+#define R_CTRL4 0x23
+#define R_CTRL5 0x24
+#define R_REFERENCE 0x26
+#define R_OUT_X_L 0x28
+#define R_INT1_CFG 0x30
+#define R_INT1_SRC 0x31
+#define R_INT1_THS 0x32
+#define R_INT1_DUR 0x33
+#define R_CLICK_CFG 0x38
+#define R_CLICK_SRC 0x39
+#define R_CLICK_THS 0x3A
+#define R_TIME_LIMIT 0x3B
+#define R_TIME_LATENCY 0x3C
+#define R_TIME_WINDOW 0x3D
+#define AUTO_INC 0x80
+
+static int wr(const i2c_bus_t *b, uint8_t r, uint8_t v) { return i2c_reg8(b, ACC_ADDR, r, v); }
+
+static int awake(const i2c_bus_t *b)
+{
+    int e = wr(b, R_CTRL1, 0x67);          /* 200 Hz, normal/HR, X Y Z on */
+    e |= wr(b, R_CTRL4, 0x98);             /* BDU, +-4 g, high resolution: 2 mg/digit */
+    e |= wr(b, R_CTRL2, 0x00);
+    e |= wr(b, R_CTRL5, 0x00);
+    e |= wr(b, R_INT1_CFG, 0x00);
+    return e;
+}
+
+int acc_init(const i2c_bus_t *b)
+{
+    uint8_t id = 0;
+    if (b->read(b->ctx, ACC_ADDR, R_WHO_AM_I, &id, 1) || id != ACC_WHO_AM_I) return -1;
+    return awake(b);
+}
+
+int acc_read(const i2c_bus_t *b, float g[3])
+{
+    uint8_t d[6];
+    if (b->read(b->ctx, ACC_ADDR, R_OUT_X_L | AUTO_INC, d, 6)) return -1;
+    for (int i = 0; i < 3; i++) g[i] = (int16_t)(d[2 * i] | d[2 * i + 1] << 8) * 0.002f;
+    return 0;
+}
