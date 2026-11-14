@@ -39,7 +39,31 @@ static void clocks(void)
     SysTick_Config(64000);                                       /* 1 kHz */
 }
 
+/* ------------------------------------------------------------------ GPIO */
+enum { IN = 0, OUT = 1, AF = 2, ANALOG = 3 };
+
+static void pin(GPIO_TypeDef *g, int n, int mode, int af, int pull, int od)
+{
+    g->MODER = (g->MODER & ~(3u << (2 * n))) | ((uint32_t)mode << (2 * n));
+    g->PUPDR = (g->PUPDR & ~(3u << (2 * n))) | ((uint32_t)pull << (2 * n));
+    g->OTYPER = (g->OTYPER & ~(1u << n)) | ((uint32_t)od << n);
+    if (mode == AF) {
+        volatile uint32_t *afr = &g->AFR[n >> 3];
+        *afr = (*afr & ~(15u << (4 * (n & 7)))) | ((uint32_t)af << (4 * (n & 7)));
+    }
+}
+
+static void gpio(void)
+{
+    /* every GPIO bonded to a pin we use, other than the one we use, stays analog (high-Z) */
+    pin(GPIOB, 7, ANALOG, 0, 0, 0);            /* pin 1: NOISE_ADC */
+    pin(GPIOA, 2, AF, 1, 1, 0);                /* pin 4: USART2_TX, half-duplex, pull-up */
+    pin(GPIOA, 9, AF, 6, 0, 1);                /* pin 5: I2C1_SCL (external 4.7k pull-ups) */
+    pin(GPIOA, 10, AF, 6, 0, 1);               /* pin 6: I2C1_SDA */
+}
+
 void hw_init(void)
 {
     clocks();
+    gpio();
 }
