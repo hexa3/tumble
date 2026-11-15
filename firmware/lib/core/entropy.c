@@ -9,8 +9,28 @@ void ent_init(ent_t *e)
     e->used = 64;
 }
 
+static void health(ent_t *e, uint16_t x)
+{
+    /* repetition count test */
+    if (e->samples && x == e->rct_last) {
+        if (++e->rct_run >= ENT_RCT_CUTOFF) { e->rct_fail++; e->status = ENT_NOISE_FAILED; e->rct_run = 1; }
+    } else {
+        e->rct_last = x;
+        e->rct_run = 1;
+    }
+    /* adaptive proportion test */
+    if (e->apt_n == 0) { e->apt_ref = x; e->apt_count = 1; }
+    else if (x == e->apt_ref && ++e->apt_count >= ENT_APT_CUTOFF) {
+        e->apt_fail++;
+        e->status = ENT_NOISE_FAILED;
+    }
+    if (++e->apt_n == ENT_APT_WINDOW) e->apt_n = 0;
+    e->samples++;
+}
+
 void ent_add_noise(ent_t *e, const uint16_t *s, size_t n)
 {
+    for (size_t i = 0; i < n; i++) health(e, s[i]);
     blake2s_update(&e->pool, s, n * sizeof *s);
     if (e->status == ENT_OK) e->credited_mbits += (uint32_t)n * ENT_NOISE_MILLIBITS;
 }
