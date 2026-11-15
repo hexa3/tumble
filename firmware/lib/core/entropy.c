@@ -80,5 +80,5 @@ uint32_t ent_uniform(ent_t *e, uint32_t n)
     uint32_t limit = (uint32_t)(0x100000000ull - (0x100000000ull % n));   /* multiple of n */
     uint32_t x;
     do x = ent_u32(e); while (limit && x >= limit);
-    return x % n;
+    return x % n + 1;
 }
