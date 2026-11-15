@@ -8,7 +8,7 @@ uint8_t gamma8(float v)
     if (v >= 1) return 255;
     float g = v * v * (0.6f + 0.4f * v);        /* ~gamma 2.4, cheap */
     int x = (int)(g * 255.0f + 0.5f);
-    return (uint8_t)(x < 1 ? 1 : x);              /* anythign visible stays visible */
+    return (uint8_t)(x < 1 ? 1 : x);              /* anything visible stays visible */
 }
 
 void render_world(const world_t *w, float brightness, uint8_t out[NPIX])
