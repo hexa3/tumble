@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define G_TILT 55.0f        /* px/s^2 per g of tilt: slow, deliberate drift */
-#define G_SHAKE 3924.0f     /* px/s^2 per g of shake: true scale at 2.5 mm/px */
+#define G_SHAKE 1960.0f     /* px/s^2 per g of shake: half of true scale (3924), tuned by eye later */
 #define DRAG 1.6f           /* rolling drag, 1/s */
 #define E_WALL 0.45f        /* restitution */
 #define E_PIP 0.6f
