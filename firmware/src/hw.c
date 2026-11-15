@@ -140,10 +140,35 @@ static void i2c_init(void)
     I2C1->CR1 = I2C_CR1_PE;
 }
 
+/* ------------------------------------------------------------------ ADC: PB7 = ADC1_IN11 */
+static void adc_init(void)
+{
+    ADC1->CFGR2 = (1u << ADC_CFGR2_CKMODE_Pos);                  /* PCLK / 2 */
+    ADC1->CR |= ADC_CR_ADVREGEN;
+    delay_us(30);
+    ADC1->CR |= ADC_CR_ADCAL;
+    while (ADC1->CR & ADC_CR_ADCAL) {}
+    ADC1->ISR = ADC_ISR_ADRDY;
+    ADC1->CR |= ADC_CR_ADEN;
+    while (!(ADC1->ISR & ADC_ISR_ADRDY)) {}
+    ADC1->SMPR = 1u;                                             /* 3.5 cycles: fast samples of the noise */
+    ADC1->CHSELR = 1u << 11;
+}
+
+void hw_noise_samples(uint16_t *buf, size_t n)
+{
+    for (size_t i = 0; i < n; i++) {
+        ADC1->CR |= ADC_CR_ADSTART;
+        while (!(ADC1->ISR & ADC_ISR_EOC)) {}
+        buf[i] = (uint16_t)ADC1->DR;
+    }
+}
+
 void hw_init(void)
 {
     clocks();
     gpio();
     uart_init();
     i2c_init();
+    adc_init();
 }
