@@ -26,7 +26,7 @@ void world_init(world_t *w, uint32_t seed)
     }
 }
 
-static void bounce(float *x, float *v, float *imp)
+static void wall(float *x, float *v, float *imp)
 {
     if (*x < LO) { *x = LO; if (*v < 0) { float j = -*v * (1 + E_WALL); *v = -*v * E_WALL; if (j > *imp) *imp = j; } }
     if (*x > HI) { *x = HI; if (*v > 0) { float j = *v * (1 + E_WALL); *v = -*v * E_WALL; if (j > *imp) *imp = j; } }
@@ -49,8 +49,8 @@ void world_step(world_t *w, float ax, float ay, float dt)
         p->vy = (p->vy + ay * dt) * drag;
         p->x += p->vx * dt;
         p->y += p->vy * dt;
-        bounce(&p->x, &p->vx, &imp);
-        bounce(&p->y, &p->vy, &imp);
+        wall(&p->x, &p->vx, &imp);
+        wall(&p->y, &p->vy, &imp);
         float da = p->alpha_to - p->alpha, step = FADE * dt;
         p->alpha += da > step ? step : (da < -step ? -step : da);
     }
