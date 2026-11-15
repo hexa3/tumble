@@ -164,6 +164,22 @@ void hw_noise_samples(uint16_t *buf, size_t n)
     }
 }
 
+/* ------------------------------------------------------------------ RNG (HSI16) */
+void hw_trng(uint32_t *w, size_t n)
+{
+    RNG->CR |= RNG_CR_RNGEN;
+    for (size_t i = 0; i < n; i++) {
+        while (!(RNG->SR & RNG_SR_DRDY)) {
+            if (RNG->SR & (RNG_SR_SEIS | RNG_SR_CEIS)) {
+                RNG->SR = 0;
+                RNG->CR &= ~RNG_CR_RNGEN;
+                RNG->CR |= RNG_CR_RNGEN;
+            }
+        }
+        w[i] = RNG->DR;
+    }
+}
+
 void hw_init(void)
 {
     clocks();
