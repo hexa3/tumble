@@ -43,6 +43,6 @@ int acc_read(const i2c_bus_t *b, float g[3])
 {
     uint8_t d[6];
     if (b->read(b->ctx, ACC_ADDR, R_OUT_X_L | AUTO_INC, d, 6)) return -1;
-    for (int i = 0; i < 3; i++) g[i] = (int16_t)(d[2 * i] | d[2 * i + 1] << 8) * 0.002f;
+    for (int i = 0; i < 3; i++) g[i] = (int16_t)(d[2 * i] | d[2 * i + 1] << 8) / 16 * 0.002f;   /* 12-bit, left-justified */
     return 0;
 }
