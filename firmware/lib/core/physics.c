@@ -54,7 +54,28 @@ void world_step(world_t *w, float ax, float ay, float dt)
         float da = p->alpha_to - p->alpha, step = FADE * dt;
         p->alpha += da > step ? step : (da < -step ? -step : da);
     }
-    for (int i = 0; i < PIPS; i++) {
+    if (!w->settling) {               /* pip-pip contacts, only among visible pips */
+        for (int i = 0; i < PIPS; i++) {
+            for (int j = i + 1; j < PIPS; j++) {
+                pip_t *a = &w->p[i], *b = &w->p[j];
+                if (a->alpha < 0.5f || b->alpha < 0.5f) continue;
+                float dx = b->x - a->x, dy = b->y - a->y, d2 = dx * dx + dy * dy, r = 2 * PIP_R;
+                if (d2 >= r * r || d2 < 1e-8f) continue;
+                float d = sqrtf(d2), nx = dx / d, ny = dy / d;
+                float push = (r - d) / 2;
+                a->x -= nx * push; a->y -= ny * push;
+                b->x += nx * push; b->y += ny * push;
+                float vn = (b->vx - a->vx) * nx + (b->vy - a->vy) * ny;
+                if (vn < 0) {
+                    float j_ = -(1 + E_PIP) * vn / 2;
+                    a->vx -= j_ * nx; a->vy -= j_ * ny;
+                    b->vx += j_ * nx; b->vy += j_ * ny;
+                    if (2 * j_ > imp) imp = 2 * j_;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < PIPS; i++) {                 /* contact pushes must not cross a wall */
         w->p[i].x = clampf(w->p[i].x, LO, HI);
         w->p[i].y = clampf(w->p[i].y, LO, HI);
         en += w->p[i].vx * w->p[i].vx + w->p[i].vy * w->p[i].vy;
