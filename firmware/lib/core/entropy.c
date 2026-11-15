@@ -50,7 +50,6 @@ int ent_status(const ent_t *e) { return e->status; }
 void ent_reseed(ent_t *e)
 {
     uint8_t d[32];
-    blake2s_update(&e->pool, e->key, sizeof e->key);     /* chain: old key feeds the new one */
     blake2s_update(&e->pool, &e->reseeds, sizeof e->reseeds);
     blake2s_final(&e->pool, d);
     memcpy(e->key, d, 32);
