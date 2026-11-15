@@ -4,7 +4,7 @@
 
 #define G_TILT 55.0f        /* px/s^2 per g of tilt: slow, deliberate drift */
 #define G_SHAKE 3924.0f     /* px/s^2 per g of shake: true scale at 2.5 mm/px */
-#define DRAG 0.8f           /* rolling drag, 1/s */
+#define DRAG 1.6f           /* rolling drag, 1/s */
 #define E_WALL 0.45f        /* restitution */
 #define E_PIP 0.6f
 #define K_SPRING 90.0f      /* settle spring, 1/s^2; damping is critical */
