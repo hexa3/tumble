@@ -54,18 +54,18 @@ void blake2s_update(blake2s_t *s, const void *in, size_t len)
 {
     const uint8_t *p = in;
     while (len) {
+        if (s->n == 64) {              /* only compress a full block once more data follows */
+            s->t[0] += 64;
+            if (s->t[0] < 64) s->t[1]++;
+            compress(s, 0);
+            s->n = 0;
+        }
         size_t k = 64 - s->n;
         if (k > len) k = len;
         memcpy(s->buf + s->n, p, k);
         s->n += k;
         p += k;
         len -= k;
-        if (s->n == 64) {
-            s->t[0] += 64;
-            if (s->t[0] < 64) s->t[1]++;
-            compress(s, 0);
-            s->n = 0;
-        }
     }
 }
 
