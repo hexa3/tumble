@@ -1,12 +1,14 @@
-/* TinyDie Tumble bring-up: tilt the board and the pips roll around. */
+/* TinyDie Tumble main loop: 200 Hz tick; the behaviour lives in lib/core (app.c). */
+#include <string.h>
+#include "app.h"
 #include "hw.h"
 #include "is31fl3733.h"
 #include "lis3dh.h"
-#include "physics.h"
-#include "render.h"
 #include "stm32g0xx.h"
 
-static world_t world;
+#define SWD_WINDOW_MS 2000      /* pins 7/8 stay SWD this long after reset so a probe can attach */
+
+static app_t app;
 static is31_t led;
 
 int main(void)
@@ -15,23 +17,46 @@ int main(void)
     hw_delay_ms(5);
     acc_init(&hw_i2c);
     is31_init(&led, &hw_i2c, IS31_GCC_DEFAULT);
-    world_init(&world, 1);
+    uint32_t seed[2];
+    hw_trng(seed, 2);
+    app_init(&app, seed[0]);
+    ent_add_trng(&app.ent, seed, 2);
 
-    float lp[3] = {0, 0, 1};
-    uint8_t frame[NPIX];
-    uint32_t next = hw_ms, tick = 0;
+    uint32_t next = hw_ms, tick = 0, noise_since = 0;
+    int swd = 1, low = 0;
     for (;;) {
         while ((int32_t)(hw_ms - next) < 0) __WFI();
-        next += 5;              /* 200 Hz */
+        next += 1000 / APP_HZ;
         tick++;
-        float g[3], a[2];
-        acc_read(&hw_i2c, g);
-        for (int i = 0; i < 3; i++) lp[i] += (g[i] - lp[i]) * 0.04f;
-        physics_accel(g, lp, a);
-        world_step(&world, a[0], a[1], 0.005f);
-        if (tick % 4 == 0) {          /* 50 frames per second */
-            render_world(&world, 1.0f, frame);
-            is31_show(&led, frame);
+        if (swd && hw_ms > SWD_WINDOW_MS) { hw_release_swd(); swd = 0; }
+
+        app_in_t in = {{0, 0, 1}, 0, low};
+        acc_read(&hw_i2c, in.g);
+        ent_add_aux(&app.ent, in.g, sizeof in.g);           /* mixed in, never credited */
+
+        app_out_t out;
+        app_step(&app, &in, &out);
+
+        if (out.want_noise && !swd) {
+            if (!noise_since) { hw_noise(1); noise_since = hw_ms; }
+            else if (hw_ms - noise_since > 50) {             /* let the boost rail settle */
+                uint16_t s[48];
+                uint32_t w;
+                hw_noise_samples(s, 48);
+                ent_add_noise(&app.ent, s, 48);
+                hw_trng(&w, 1);
+                ent_add_trng(&app.ent, &w, 1);
+            }
+        } else if (noise_since) {
+            hw_noise(0);
+            noise_since = 0;
+        } else if (out.want_noise) {                          /* inside the SWD window: TRNG only */
+            uint32_t w[4];
+            hw_trng(w, 4);
+            ent_add_aux(&app.ent, w, sizeof w);
         }
+        if (tick % 4 == 0) is31_show(&led, out.frame);       /* 50 frames per second */
+
+        if (out.sleep) app_wake(&app);                 /* no real sleep yet */
     }
 }
