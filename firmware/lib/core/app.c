@@ -7,7 +7,7 @@ const int APP_MODES = sizeof APP_SIDES;
 
 #define MS(x) ((uint32_t)((x) * APP_HZ / 1000))
 #define SHAKE_G 0.35f          /* deviation from the gravity estimate that counts as a shake */
-#define CALM_MS 500            /* quiet this long after a shake: the die lands */
+#define CALM_MS 350            /* quiet this long after a shake: the die lands */
 #define SHOW_MS 8000           /* then fade and sleep */
 
 static void set_state(app_t *a, app_state_t s) { a->st = s; a->t_state = a->t; }
