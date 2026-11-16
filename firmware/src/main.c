@@ -33,6 +33,7 @@ int main(void)
         app_in_t in = {{0, 0, 1}, 0, low};
         acc_read(&hw_i2c, in.g);
         ent_add_aux(&app.ent, in.g, sizeof in.g);           /* mixed in, never credited */
+        if (!swd && hw_acc_int()) in.double_tap = acc_double_tap(&hw_i2c);
 
         app_out_t out;
         app_step(&app, &in, &out);

@@ -9,4 +9,5 @@
 
 int acc_init(const i2c_bus_t *bus);
 int acc_read(const i2c_bus_t *bus, float g[3]);       /* specific force in g, board axes */
+int acc_double_tap(const i2c_bus_t *bus);            /* 1 if a double click happened (reads CLICK_SRC) */
 #endif
