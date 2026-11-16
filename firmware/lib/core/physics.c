@@ -12,6 +12,21 @@
 #define LO (-0.5f + PIP_R)
 #define HI (FIELD - 0.5f - PIP_R)
 
+static const float FACE[7][6][2] = {
+    {{0}},
+    {{5, 5}},
+    {{2, 2}, {8, 8}},
+    {{2, 2}, {5, 5}, {8, 8}},
+    {{2, 2}, {8, 2}, {2, 8}, {8, 8}},
+    {{2, 2}, {8, 2}, {5, 5}, {2, 8}, {8, 8}},
+    {{2, 2}, {8, 2}, {2, 5}, {8, 5}, {2, 8}, {8, 8}},
+};
+
+void face_points(int n, float out[][2])
+{
+    for (int i = 0; i < n; i++) { out[i][0] = FACE[n][i][0]; out[i][1] = FACE[n][i][1]; }
+}
+
 void world_init(world_t *w, uint32_t seed)
 {
     memset(w, 0, sizeof *w);
@@ -45,8 +60,14 @@ void world_step(world_t *w, float ax, float ay, float dt)
     float drag = 1.0f - DRAG * dt;
     for (int i = 0; i < PIPS; i++) {
         pip_t *p = &w->p[i];
-        p->vx = (p->vx + ax * dt) * drag;
-        p->vy = (p->vy + ay * dt) * drag;
+        if (w->settling) {
+            float c = 2.0f * sqrtf(K_SPRING);
+            p->vx += (K_SPRING * (p->tx - p->x) - c * p->vx) * dt;
+            p->vy += (K_SPRING * (p->ty - p->y) - c * p->vy) * dt;
+        } else {
+            p->vx = (p->vx + ax * dt) * drag;
+            p->vy = (p->vy + ay * dt) * drag;
+        }
         p->x += p->vx * dt;
         p->y += p->vy * dt;
         wall(&p->x, &p->vx, &imp);
@@ -82,4 +103,48 @@ void world_step(world_t *w, float ax, float ay, float dt)
     }
     w->max_impulse = imp;
     w->energy = en / PIPS;
+}
+
+void world_settle(world_t *w, int n)
+{
+    if (n <= 0) {
+        w->settling = 0;
+        for (int i = 0; i < PIPS; i++) w->p[i].alpha_to = 1.0f;
+        return;
+    }
+    float pts[6][2];
+    face_points(n, pts);
+    int taken[PIPS] = {0};
+    /* greedy nearest assignment: each face point takes the closest free visible pip */
+    for (int k = 0; k < n; k++) {
+        int best = -1;
+        float bd = 1e9f;
+        for (int i = 0; i < PIPS; i++) {
+            if (taken[i]) continue;
+            float dx = w->p[i].x - pts[k][0], dy = w->p[i].y - pts[k][1], d = dx * dx + dy * dy;
+            if (d < bd) { bd = d; best = i; }
+        }
+        taken[best] = 1;
+        w->p[best].tx = pts[k][0];
+        w->p[best].ty = pts[k][1];
+        w->p[best].alpha_to = 1.0f;
+    }
+    for (int i = 0; i < PIPS; i++) {
+        if (taken[i]) continue;
+        w->p[i].tx = w->p[i].x;           /* surplus pips stop where they are and fade */
+        w->p[i].ty = w->p[i].y;
+        w->p[i].alpha_to = 0.0f;
+    }
+    w->settling = 1;
+}
+
+int world_settled(const world_t *w)
+{
+    if (!w->settling) return 0;
+    for (int i = 0; i < PIPS; i++) {
+        const pip_t *p = &w->p[i];
+        if (fabsf(p->alpha - p->alpha_to) > 0.02f) return 0;
+        if (p->alpha_to > 0 && (fabsf(p->x - p->tx) > 0.05f || fabsf(p->y - p->ty) > 0.05f)) return 0;
+    }
+    return 1;
 }

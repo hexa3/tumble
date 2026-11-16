@@ -6,6 +6,7 @@
  * gentle gain so pips drift, the fast part (shake) at true scale (1 g = 3924 px/s^2 at 2.5 mm/px)
  * so a real shake moves the box under the pips by real distances.  Walls and pip-pip contacts are inelastic; every contact reports its
  * impulse so the haptic motor can tick in proportion.
+ * Settle mode: each pip is pulled to a target by a critically damped spring and fades to `alpha_to`.
  */
 #ifndef PHYSICS_H
 #define PHYSICS_H
@@ -33,4 +34,9 @@ void world_init(world_t *w, uint32_t seed);
 void world_step(world_t *w, float ax, float ay, float dt);
 /* f, f_lp: specific force and its low-passed value (gravity estimate), in g, board plane */
 void physics_accel(const float f[2], const float f_lp[2], float a[2]);
+/* Pull the pips into die face `n` (1..6); pips not needed fade out.  n = 0 releases them. */
+void world_settle(world_t *w, int n);
+int world_settled(const world_t *w);
+/* Pip centres for die face n, index 0..n-1. */
+void face_points(int n, float out[][2]);
 #endif
