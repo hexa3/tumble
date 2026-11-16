@@ -49,7 +49,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
     switch (a->st) {
     case ST_SHOW:
         if (in->double_tap && !shaking) {
-            a->mode = (a->mode + 1) % 6;
+            a->mode = (a->mode + 1) % APP_MODES;
             set_state(a, ST_MODE);
             break;
         }
