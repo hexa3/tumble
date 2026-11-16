@@ -62,6 +62,23 @@ static void gpio(void)
     pin(GPIOA, 10, AF, 6, 0, 1);               /* pin 6: I2C1_SDA */
 }
 
+void hw_release_swd(void)
+{
+    GPIOA->BRR = 1u << 13;
+    pin(GPIOA, 13, OUT, 0, 0, 0);              /* pin 7: NOISE_EN, low */
+    pin(GPIOA, 14, ANALOG, 0, 0, 0);           /* pin 8: SWCLK off ... */
+    pin(GPIOB, 5, IN, 0, 2, 0);                /* ... ACC_INT1 on PB5, pull-down (LIS3DH INT1 is active high) */
+    EXTI->EXTICR[1] = (EXTI->EXTICR[1] & ~0xFF00u) | (0x01u << 8);   /* EXTI5 <- port B */
+    EXTI->RTSR1 |= 1u << 5;
+    EXTI->IMR1 |= 1u << 5;
+    NVIC_EnableIRQ(EXTI4_15_IRQn);
+}
+void EXTI4_15_IRQHandler(void) { EXTI->RPR1 = 1u << 5; }
+
+void hw_noise(int on) { if (on) GPIOA->BSRR = 1u << 13; else GPIOA->BRR = 1u << 13; }
+int hw_acc_int(void) { return (GPIOB->IDR >> 5) & 1; }
+int hw_usb_present(void) { return (GPIOA->IDR >> 2) & 1; }
+
 /* ------------------------------------------------------------------ USART2, single wire, 115200 */
 static void uart_init(void)
 {
