@@ -48,6 +48,11 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
 
     switch (a->st) {
     case ST_SHOW:
+        if (in->double_tap && !shaking) {
+            a->mode = (a->mode + 1) % 6;
+            set_state(a, ST_MODE);
+            break;
+        }
         if (shaking) {
             world_settle(&a->w, 0);
             set_state(a, ST_TUMBLE);
@@ -70,7 +75,8 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
             set_state(a, ST_SHOW);
         }
         break;
-    case ST_MODE:                              /* no die switching yet */
+    case ST_MODE:
+        if (a->t - a->t_state > MS(900)) { a->result = 0; set_state(a, ST_SHOW); }
         break;
     case ST_FADE:
         a->bright -= dt / 0.6f;
@@ -88,7 +94,10 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
     world_step(&a->w, acc[0], acc[1], dt);
 
     /* frame */
-    render_world(&a->w, a->bright, out->frame);
+    if (a->st == ST_MODE) render_number(sides, a->bright, out->frame);
+    else if (sides != 6 && (a->st == ST_SHOW || a->st == ST_FADE) && a->result)
+        render_number((int)a->result, a->bright, out->frame);
+    else render_world(&a->w, a->bright, out->frame);
 
     out->want_noise = a->st == ST_TUMBLE || !ent_ready(&a->ent);
 }

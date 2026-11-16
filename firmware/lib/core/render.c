@@ -32,3 +32,30 @@ void render_world(const world_t *w, float brightness, uint8_t out[NPIX])
     }
     for (int k = 0; k < NPIX; k++) out[k] = gamma8((acc[k] > 1 ? 1 : acc[k]) * brightness);
 }
+
+/* 3x5 digits, rows top to bottom, bit 2 = left column */
+static const uint8_t DIGIT[10][5] = {
+    {7, 5, 5, 5, 7}, {2, 6, 2, 2, 7}, {7, 1, 7, 4, 7}, {7, 1, 7, 1, 7}, {5, 5, 7, 1, 1},
+    {7, 4, 7, 1, 7}, {7, 4, 7, 5, 7}, {7, 1, 1, 2, 2}, {7, 5, 7, 5, 7}, {7, 5, 7, 1, 7}};
+
+static void put_digit(int d, int x0, int y0, uint8_t lv, uint8_t out[NPIX])
+{
+    for (int r = 0; r < 5; r++)
+        for (int c = 0; c < 3; c++)
+            if (DIGIT[d][r] & (4 >> c)) out[(y0 + r) * FIELD + x0 + c] = lv;
+}
+
+void render_number(int n, float brightness, uint8_t out[NPIX])
+{
+    memset(out, 0, NPIX);
+    uint8_t lv = gamma8(brightness);
+    char s[4];
+    int len = 0;
+    if (n >= 100) { s[len++] = 1; s[len++] = 0; s[len++] = 0; }
+    else if (n >= 10) { s[len++] = (char)(n / 10); s[len++] = (char)(n % 10); }
+    else s[len++] = (char)n;
+    int w = len * 4 - 1, x = (FIELD - w) / 2, y = (FIELD - 5) / 2;
+    for (int i = 0; i < len; i++) put_digit(s[i], x + 4 * i, y, lv, out);
+}
+
+void render_mark(uint8_t out[NPIX], uint8_t level) { out[FIELD - 1] = level; }
