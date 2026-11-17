@@ -45,7 +45,7 @@ int drv_init(const i2c_bus_t *b, int calibrate)
 
 int drv_rtp(const i2c_bus_t *b, uint8_t amplitude)
 {
-    return i2c_reg8(b, DRV_ADDR, R_RTP, amplitude);
+    return i2c_reg8(b, DRV_ADDR, R_RTP, amplitude > 127 ? 127 : amplitude);
 }
 
 int drv_standby(const i2c_bus_t *b, int standby)
