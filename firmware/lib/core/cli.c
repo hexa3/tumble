@@ -41,8 +41,11 @@ void cli_exec(cli_t *c, const char *line)
                  (unsigned long)c->ent->samples, (unsigned long)c->ent->rct_fail, (unsigned long)c->ent->apt_fail,
                  ent_status(c->ent) == ENT_OK ? "ok" : "NOISE-FAILED", (unsigned long)c->ent->reseeds);
         c->puts(c->ctx, out);
+    } else if (!strncmp(line, "dfu", 3)) {
+        c->puts(c->ctx, "dfu\n");
+        if (c->dfu) c->dfu(c->ctx);
     } else if (line[0]) {
-        c->puts(c->ctx, "? raw N | roll N S | health\n");
+        c->puts(c->ctx, "? raw N | roll N S | health | dfu\n");
     }
 }
 

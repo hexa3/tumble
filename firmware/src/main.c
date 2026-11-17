@@ -48,7 +48,7 @@ int main(void)
     hw_trng(seed, 2);
     app_init(&app, seed[0]);
     ent_add_trng(&app.ent, seed, 2);
-    cli = (cli_t){cli_puts, cli_noise, cli_trng, 0, &app.ent, {0}, 0};
+    cli = (cli_t){cli_puts, cli_noise, cli_trng, 0, 0, &app.ent, {0}, 0};
 
     uint32_t next = hw_ms, tick = 0, noise_since = 0;
     int swd = 1, low = 0;
