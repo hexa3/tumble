@@ -21,8 +21,8 @@ int drv_init(const i2c_bus_t *b, int calibrate)
     e |= i2c_reg8(b, DRV_ADDR, R_CLAMP, DRV_OD_CLAMP);
     e |= i2c_reg8(b, DRV_ADDR, R_CONTROL1, 0x80 | DRV_DRIVE_TIME);            /* startup boost */
     e |= i2c_reg8(b, DRV_ADDR, R_CONTROL2, 0xF5);                /* defaults: sample 300 us, blank/idiss 1 */
-    e |= i2c_reg8(b, DRV_ADDR, R_CONTROL4, 0x30); /* AUTO_CAL_TIME 3 */
-    e |= i2c_reg8(b, DRV_ADDR, R_LIBRARY, 6); /* LRA library */
+    e |= i2c_reg8(b, DRV_ADDR, R_CONTROL4, 0x30);                /* AUTO_CAL_TIME 3 */
+    e |= i2c_reg8(b, DRV_ADDR, R_LIBRARY, 6);                    /* LRA library */
     if (e) return e;
     if (calibrate) {
         e |= i2c_reg8(b, DRV_ADDR, R_MODE, 0x07);
@@ -39,7 +39,7 @@ int drv_init(const i2c_bus_t *b, int calibrate)
     }
     e |= i2c_reg8(b, DRV_ADDR, R_CONTROL3, 0xA0);       /* defaults, signed RTP data */
     e |= i2c_reg8(b, DRV_ADDR, R_RTP, 0);
-    e |= i2c_reg8(b,DRV_ADDR, R_MODE, 0x05); /* real-time playback */
+    e |= i2c_reg8(b, DRV_ADDR, R_MODE, 0x05);           /* real-time playback */
     return e;
 }
 
