@@ -9,6 +9,7 @@ const int APP_MODES = sizeof APP_SIDES;
 #define SHAKE_G 0.35f          /* deviation from the gravity estimate that counts as a shake */
 #define CALM_MS 350            /* quiet this long after a shake: the die lands */
 #define SHOW_MS 8000           /* then fade and sleep */
+#define FACE_DOWN_G (-0.7f)
 
 static void set_state(app_t *a, app_state_t s) { a->st = s; a->t_state = a->t; }
 
@@ -68,6 +69,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
             set_state(a, ST_TUMBLE);
             break;
         }
+        if (a->lp[2] < FACE_DOWN_G && a->t - a->t_state > MS(500)) { set_state(a, ST_SLEEP); break; }
         if (a->t - a->t_motion > MS(SHOW_MS)) set_state(a, ST_FADE);
         break;
     case ST_TUMBLE:
