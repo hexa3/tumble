@@ -12,6 +12,15 @@ const int APP_MODES = sizeof APP_SIDES;
 
 static void set_state(app_t *a, app_state_t s) { a->st = s; a->t_state = a->t; }
 
+static void haptic(app_t *a, uint8_t amp, uint16_t ms)
+{
+    if (a->t - a->t_haptic < MS(25) && amp <= a->hap_amp) return;   /* rate limit small ticks */
+    a->hap_amp = amp;
+    a->hap_left = (uint16_t)MS(ms);
+    if (!a->hap_left) a->hap_left = 1;
+    a->t_haptic = a->t;
+}
+
 void app_init(app_t *a, uint32_t seed)
 {
     memset(a, 0, sizeof *a);
@@ -51,6 +60,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
         if (in->double_tap && !shaking) {
             a->mode = (a->mode + 1) % APP_MODES;
             set_state(a, ST_MODE);
+            haptic(a, 60, 20);
             break;
         }
         if (shaking) {
@@ -72,6 +82,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
     case ST_SETTLE:
         if (shaking) { world_settle(&a->w, 0); set_state(a, ST_TUMBLE); break; }
         if ((sides == 6 && world_settled(&a->w)) || (sides != 6 && a->t - a->t_state > MS(300))) {
+            haptic(a, 127, 40);                    /* the landing thud */
             set_state(a, ST_SHOW);
         }
         break;
@@ -92,6 +103,10 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
     float acc[2];
     physics_accel(in->g, a->lp, acc);
     world_step(&a->w, acc[0], acc[1], dt);
+    if (a->st == ST_TUMBLE && a->w.max_impulse > 3.0f) {
+        float amp = 20.0f + a->w.max_impulse * 4.0f;
+        haptic(a, (uint8_t)(amp > 110 ? 110 : amp), 12);
+    }
 
     /* frame */
     if (a->st == ST_MODE) render_number(sides, a->bright, out->frame);
@@ -99,5 +114,6 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
         render_number((int)a->result, a->bright, out->frame);
     else render_world(&a->w, a->bright, out->frame);
 
+    if (a->hap_left) { out->haptic = a->hap_amp; a->hap_left--; }
     out->want_noise = a->st == ST_TUMBLE || !ent_ready(&a->ent);
 }

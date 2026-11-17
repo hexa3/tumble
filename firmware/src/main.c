@@ -1,6 +1,7 @@
 /* TinyDie Tumble main loop: 200 Hz tick; the behaviour lives in lib/core (app.c). */
 #include <string.h>
 #include "app.h"
+#include "drv2605l.h"
 #include "hw.h"
 #include "is31fl3733.h"
 #include "lis3dh.h"
@@ -16,6 +17,7 @@ int main(void)
     hw_init();
     hw_delay_ms(5);
     acc_init(&hw_i2c);
+    drv_init(&hw_i2c, 1);             /* LRA auto-calibration on power-up */
     is31_init(&led, &hw_i2c, IS31_GCC_DEFAULT);
     uint32_t seed[2];
     hw_trng(seed, 2);
@@ -56,6 +58,8 @@ int main(void)
             hw_trng(w, 4);
             ent_add_aux(&app.ent, w, sizeof w);
         }
+        static uint8_t last_hap;
+        if (out.haptic != last_hap) { drv_rtp(&hw_i2c, out.haptic); last_hap = out.haptic; }
         if (tick % 4 == 0) is31_show(&led, out.frame);       /* 50 frames per second */
 
         if (out.sleep) app_wake(&app);                 /* no real sleep yet */
