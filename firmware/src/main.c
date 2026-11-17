@@ -12,6 +12,23 @@
 static app_t app;
 static is31_t led;
 
+static void peripherals_on(void)
+{
+    is31_sleep(&led, 0);
+    drv_standby(&hw_i2c, 0);
+    acc_sleep_mode(&hw_i2c, 0);
+}
+
+static void peripherals_off(void)
+{
+    uint8_t dark[NPIX] = {0};
+    is31_show(&led, dark);
+    is31_sleep(&led, 1);              /* software shutdown: SDB is pulled up on the core */
+    drv_standby(&hw_i2c, 1);          /* EN is tied high; STANDBY is the low-power state */
+    hw_noise(0);
+    acc_sleep_mode(&hw_i2c, 1);
+}
+
 int main(void)
 {
     hw_init();
@@ -62,6 +79,13 @@ int main(void)
         if (out.haptic != last_hap) { drv_rtp(&hw_i2c, out.haptic); last_hap = out.haptic; }
         if (tick % 4 == 0) is31_show(&led, out.frame);       /* 50 frames per second */
 
-        if (out.sleep) app_wake(&app);                 /* no real sleep yet */
+        if (out.sleep) {
+            if (hw_usb_present() || swd) { app_wake(&app); continue; }   /* stay up on USB */
+            peripherals_off();
+            hw_sleep();
+            peripherals_on();
+            app_wake(&app);
+            next = hw_ms;
+        }
     }
 }
