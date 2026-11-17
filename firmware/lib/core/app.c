@@ -64,7 +64,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
             haptic(a, 60, 20);
             break;
         }
-        if (shaking) {
+        if (shaking && !in->low_battery) {
             world_settle(&a->w, 0);
             set_state(a, ST_TUMBLE);
             break;
@@ -115,6 +115,7 @@ void app_step(app_t *a, const app_in_t *in, app_out_t *out)
     else if (sides != 6 && (a->st == ST_SHOW || a->st == ST_FADE) && a->result)
         render_number((int)a->result, a->bright, out->frame);
     else render_world(&a->w, a->bright, out->frame);
+    if (in->low_battery && (a->t / MS(500)) % 2) render_mark(out->frame, 255);
 
     if (a->hap_left) { out->haptic = a->hap_amp; a->hap_left--; }
     out->want_noise = a->st == ST_TUMBLE || !ent_ready(&a->ent);

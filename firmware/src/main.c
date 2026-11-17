@@ -5,9 +5,11 @@
 #include "hw.h"
 #include "is31fl3733.h"
 #include "lis3dh.h"
+#include "max17048.h"
 #include "stm32g0xx.h"
 
 #define SWD_WINDOW_MS 2000      /* pins 7/8 stay SWD this long after reset so a probe can attach */
+#define LOW_BATTERY_PCT 5
 
 static app_t app;
 static is31_t led;
@@ -53,6 +55,10 @@ int main(void)
         acc_read(&hw_i2c, in.g);
         ent_add_aux(&app.ent, in.g, sizeof in.g);           /* mixed in, never credited */
         if (!swd && hw_acc_int()) in.double_tap = acc_double_tap(&hw_i2c);
+        if (tick % APP_HZ == 0) {
+            gauge_t g;
+            if (!gauge_read(&hw_i2c, &g)) low = in.low_battery = g.soc < LOW_BATTERY_PCT;
+        }
 
         app_out_t out;
         app_step(&app, &in, &out);
