@@ -1,6 +1,7 @@
 /* TinyDie Tumble main loop: 200 Hz tick; the behaviour lives in lib/core (app.c). */
 #include <string.h>
 #include "app.h"
+#include "cli.h"
 #include "drv2605l.h"
 #include "hw.h"
 #include "is31fl3733.h"
@@ -13,6 +14,11 @@
 
 static app_t app;
 static is31_t led;
+static cli_t cli;
+
+static void cli_puts(void *ctx, const char *s) { (void)ctx; hw_uart_puts(s); }
+static void cli_noise(void *ctx, uint16_t *b, size_t n) { (void)ctx; hw_noise(1); hw_noise_samples(b, n); }
+static void cli_trng(void *ctx, uint32_t *w, size_t n) { (void)ctx; hw_trng(w, n); }
 
 static void peripherals_on(void)
 {
@@ -42,6 +48,7 @@ int main(void)
     hw_trng(seed, 2);
     app_init(&app, seed[0]);
     ent_add_trng(&app.ent, seed, 2);
+    cli = (cli_t){cli_puts, cli_noise, cli_trng, 0, &app.ent, {0}, 0};
 
     uint32_t next = hw_ms, tick = 0, noise_since = 0;
     int swd = 1, low = 0;
@@ -50,6 +57,8 @@ int main(void)
         next += 1000 / APP_HZ;
         tick++;
         if (swd && hw_ms > SWD_WINDOW_MS) { hw_release_swd(); swd = 0; }
+
+        for (int c; (c = hw_uart_getc()) >= 0;) cli_char(&cli, (char)c);
 
         app_in_t in = {{0, 0, 1}, 0, low};
         acc_read(&hw_i2c, in.g);
