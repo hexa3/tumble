@@ -59,3 +59,22 @@ int acc_double_tap(const i2c_bus_t *b)
     if (b->read(b->ctx, ACC_ADDR, R_CLICK_SRC, &src, 1)) return 0;
     return (src & 0x40) && (src & 0x20);   /* IA and DCLICK */
 }
+
+int acc_sleep_mode(const i2c_bus_t *b, int sleep)
+{
+    if (!sleep) return awake(b);
+    uint8_t dummy;
+    int e = wr(b, R_CTRL3, 0x00);
+    e |= wr(b, R_CLICK_CFG, 0x00);
+    e |= wr(b, R_CTRL1, 0x2F);             /* 10 Hz, low-power: ~6 uA */
+    e |= wr(b, R_CTRL2, 0x01);             /* high-pass filter on the INT1 function */
+    e |= wr(b, R_CTRL4, 0x00);             /* +-2 g */
+    e |= wr(b, R_CTRL5, 0x08);             /* latch INT1 */
+    e |= wr(b, R_INT1_THS, 10);            /* 10 x 16 mg = 160 mg */
+    e |= wr(b, R_INT1_DUR, 0);
+    e |= wr(b, R_INT1_CFG, 0x2A);          /* X, Y or Z high */
+    e |= b->read(b->ctx, ACC_ADDR, R_REFERENCE, &dummy, 1);   /* reset the high-pass filter */
+    e |= b->read(b->ctx, ACC_ADDR, R_INT1_SRC, &dummy, 1);    /* clear the latch */
+    e |= wr(b, R_CTRL3, 0x40);             /* IA1 on INT1 */
+    return e;
+}
