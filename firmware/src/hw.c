@@ -197,6 +197,19 @@ void hw_trng(uint32_t *w, size_t n)
     }
 }
 
+/* ------------------------------------------------------------------ sleep */
+void hw_sleep(void)
+{
+    hw_noise(0);
+    SysTick->CTRL &= ~SysTick_CTRL_ENABLE_Msk;
+    PWR->CR1 = (PWR->CR1 & ~PWR_CR1_LPMS) | PWR_CR1_LPMS_0;        /* Stop 1 */
+    SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+    EXTI->RPR1 = 1u << 5;
+    if (!hw_acc_int()) __WFI();
+    SCB->SCR &= ~SCB_SCR_SLEEPDEEP_Msk;
+    clocks();                                                      /* Stop wakes on HSI16 */
+}
+
 void hw_init(void)
 {
     clocks();
