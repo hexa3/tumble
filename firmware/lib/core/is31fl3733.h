@@ -13,6 +13,8 @@ typedef struct {
 
 int is31_init(is31_t *d, const i2c_bus_t *bus, uint8_t gcc);
 int is31_show(is31_t *d, const uint8_t *level);      /* 121 levels, row-major */
+int is31_sleep(is31_t *d, int sleep);                 /* software shutdown (SSD) */
+int is31_gcc(is31_t *d, uint8_t gcc);                 /* global current, 0..255 */
 /* PWM register (0..191) of each pixel, from the board's netlist: (SW - 1) * 16 + (CS - 1) */
 extern const uint8_t PIXEL_REG[121];
 #endif

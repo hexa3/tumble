@@ -55,3 +55,15 @@ int is31_show(is31_t *d, const uint8_t *level)
     int e = page(d, PG_PWM);
     return e | d->bus->write(d->bus->ctx, IS31_ADDR, buf, sizeof buf);
 }
+
+int is31_sleep(is31_t *d, int sleep)
+{
+    int e = page(d, PG_FUNC);
+    return e | i2c_reg8(d->bus, IS31_ADDR, F_CONFIG, sleep ? 0x00 : 0x01);
+}
+
+int is31_gcc(is31_t *d, uint8_t gcc)
+{
+    int e = page(d, PG_FUNC);
+    return e | i2c_reg8(d->bus, IS31_ADDR, F_GCC, gcc);
+}
