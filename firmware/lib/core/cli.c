@@ -37,9 +37,9 @@ void cli_exec(cli_t *c, const char *line)
             c->puts(c->ctx, out);
         }
     } else if (!strncmp(line, "health", 6)) {
-        snprintf(out, sizeof out, "samples %lu rct_fail %lu apt_fail %lu status %s\n",
+        snprintf(out, sizeof out, "samples %lu rct_fail %lu apt_fail %lu status %s reseeds %lu\n",
                  (unsigned long)c->ent->samples, (unsigned long)c->ent->rct_fail, (unsigned long)c->ent->apt_fail,
-                 ent_status(c->ent) == ENT_OK ? "ok" : "NOISE-FAILED");
+                 ent_status(c->ent) == ENT_OK ? "ok" : "NOISE-FAILED", (unsigned long)c->ent->reseeds);
         c->puts(c->ctx, out);
     } else if (line[0]) {
         c->puts(c->ctx, "? raw N | roll N S | health\n");
