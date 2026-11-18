@@ -382,3 +382,76 @@ class PcbBuilder:
     def path(self, pts, w, net, layer="F"):
         for a, b in zip(pts, pts[1:]):
             self.track(a, b, w, net, layer)
+
+    def via(self, x, y, net, d=0.6, drill=0.3):
+        pcbnew = self.pcbnew
+        v = pcbnew.PCB_VIA(self.board)
+        v.SetPosition(self.V(x, y))
+        v.SetDrill(pcbnew.FromMM(drill))
+        v.SetWidth(pcbnew.FromMM(d))
+        v.SetNet(self.net(net))
+        self.board.Add(v)
+        self.vias.append(((self.ox + x, self.oy + y), self.net(net).GetNetname()))
+
+    def edge_rect(self, x1, y1, x2, y2):
+        pcbnew = self.pcbnew
+        s = pcbnew.PCB_SHAPE(self.board, pcbnew.SHAPE_T_RECT)
+        s.SetStart(self.V(x1, y1))
+        s.SetEnd(self.V(x2, y2))
+        s.SetLayer(pcbnew.Edge_Cuts)
+        s.SetWidth(pcbnew.FromMM(0.1))
+        self.board.Add(s)
+
+    def edge_poly(self, pts):
+        for a, b in zip(pts, pts[1:] + pts[:1]):
+            pcbnew = self.pcbnew
+            s = pcbnew.PCB_SHAPE(self.board, pcbnew.SHAPE_T_SEGMENT)
+            s.SetStart(self.V(*a))
+            s.SetEnd(self.V(*b))
+            s.SetLayer(pcbnew.Edge_Cuts)
+            s.SetWidth(pcbnew.FromMM(0.1))
+            self.board.Add(s)
+
+    def text(self, s, x, y, layer="F.SilkS", size=1.0, rot=0, bold=False, mirror=None,
+             justify=None):
+        pcbnew = self.pcbnew
+        t = pcbnew.PCB_TEXT(self.board)
+        t.SetText(s)
+        t.SetPosition(self.V(x, y))
+        lid = {"F.SilkS": pcbnew.F_SilkS, "B.SilkS": pcbnew.B_SilkS, "F.Fab": pcbnew.F_Fab,
+               "B.Fab": pcbnew.B_Fab, "F.Cu": pcbnew.F_Cu, "B.Cu": pcbnew.B_Cu,
+               "F.Mask": pcbnew.F_Mask, "B.Mask": pcbnew.B_Mask}[layer]
+        t.SetLayer(lid)
+        t.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(size), pcbnew.FromMM(size)))
+        t.SetTextThickness(pcbnew.FromMM(size * (0.2 if bold else 0.15)))
+        t.SetTextAngleDegrees(rot)
+        if justify == "left":
+            t.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_LEFT)
+        elif justify == "right":
+            t.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_RIGHT)
+        if mirror if mirror is not None else layer.startswith("B."):
+            t.SetMirrored(True)
+        self.board.Add(t)
+        return t
+
+    def silk_circle(self, x, y, r, w=0.15, layer="F.SilkS", fill=False):
+        pcbnew = self.pcbnew
+        s = pcbnew.PCB_SHAPE(self.board, pcbnew.SHAPE_T_CIRCLE)
+        s.SetCenter(self.V(x, y))
+        s.SetEnd(self.V(x + r, y))
+        s.SetLayer({"F.SilkS": pcbnew.F_SilkS, "B.SilkS": pcbnew.B_SilkS,
+                    "F.Fab": pcbnew.F_Fab}[layer])
+        s.SetWidth(pcbnew.FromMM(w))
+        if fill:
+            s.SetFilled(True)
+        self.board.Add(s)
+
+    def silk_line(self, a, b, w=0.15, layer="F.SilkS"):
+        pcbnew = self.pcbnew
+        s = pcbnew.PCB_SHAPE(self.board, pcbnew.SHAPE_T_SEGMENT)
+        s.SetStart(self.V(*a))
+        s.SetEnd(self.V(*b))
+        s.SetLayer({"F.SilkS": pcbnew.F_SilkS, "B.SilkS": pcbnew.B_SilkS,
+                    "F.Fab": pcbnew.F_Fab, "B.Fab": pcbnew.B_Fab}[layer])
+        s.SetWidth(pcbnew.FromMM(w))
+        self.board.Add(s)
