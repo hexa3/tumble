@@ -115,6 +115,44 @@ def main():
     assert n == 10, n
     open(os.path.join(LIB, "MSOP-10_3x3mm_P0.5mm_OSH.kicad_mod"), "w").write(out)
     print("footprints ->", LIB)
+    symbols()
+
+
+def _pin(kind, x, y, ang, name, num):
+    eff = ["effects", ["font", ["size", 1.27, 1.27]]]
+    return ["pin", kind, "line", ["at", x, y, ang], ["length", 2.54],
+            ["name", Q(name), eff], ["number", Q(num), eff]]
+
+
+def symbols():
+    """Tumble.kicad_sym: MAX17048 (no stock KiCad symbol).  Pinout from the MAX17048/MAX17049
+    datasheet, Pin/Bump Descriptions (TDFN): 1 CTG, 2 CELL, 3 VDD, 4 GND, 5 ALRT, 6 QSTRT, 7 SCL,
+    8 SDA, EP = GND."""
+    def prop(k, v, y, hide=False):
+        e = ["effects", ["font", ["size", 1.27, 1.27]]]
+        if hide:
+            e.append(["hide", "yes"])
+        return ["property", Q(k), Q(v), ["at", 0, y, 0], e]
+    body = ["symbol", Q("MAX17048_1_1"),
+            _pin("power_in", -10.16, 2.54, 0, "VDD", "3"), _pin("passive", -10.16, 0, 0, "CELL", "2"),
+            _pin("passive", -10.16, -2.54, 0, "CTG", "1"), _pin("bidirectional", 10.16, 2.54, 180, "SDA", "8"),
+            _pin("input", 10.16, 0, 180, "SCL", "7"), _pin("open_collector", 10.16, -2.54, 180, "~{ALRT}", "5"),
+            _pin("input", -2.54, -10.16, 90, "QSTRT", "6"), _pin("power_in", 0, -10.16, 90, "GND", "4"),
+            _pin("passive", 2.54, -10.16, 90, "EP", "9")]
+    rect = ["symbol", Q("MAX17048_0_1"),
+            ["rectangle", ["start", -7.62, 5.08], ["end", 7.62, -7.62],
+             ["stroke", ["width", 0.254], ["type", "default"]], ["fill", ["type", "background"]]]]
+    sym = ["symbol", Q("MAX17048"), ["exclude_from_sim", "no"], ["in_bom", "yes"], ["on_board", "yes"],
+           prop("Reference", "U", 7.62), prop("Value", "MAX17048", -12.7),
+           prop("Footprint", "Package_DFN_QFN:DFN-8-1EP_2x2mm_P0.5mm_EP0.8x1.6mm", -15.24, True),
+           prop("Datasheet", "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX17048-MAX17049.pdf", -17.78, True),
+           prop("Description", "1-cell Li+ fuel gauge, ModelGauge, I2C 0x36, TDFN-8 2x2", -20.32, True),
+           rect, body]
+    lib = ["kicad_symbol_lib", ["version", 20241209], ["generator", Q("tinydie-tumble")],
+           ["generator_version", Q("1.0")], sym]
+    with open(os.path.join(os.path.dirname(LIB), "Tumble.kicad_sym"), "w") as f:
+        f.write(dump(lib) + "\n")
+    print("symbols    ->", os.path.join(os.path.dirname(LIB), "Tumble.kicad_sym"))
 
 
 if __name__ == "__main__":
