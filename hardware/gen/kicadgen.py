@@ -277,3 +277,108 @@ def write_project(project, out_dir, clearance=0.16, track=0.25, edge=0.4, extra_
            "  (constraint hole_clearance (min 0.2)))\n" + extra_rules)
     with open(os.path.join(out_dir, f"{project}.kicad_dru"), "w") as f:
         f.write(dru)
+
+
+# ------------------------------------------------------------------ PCB
+class PcbBuilder:
+    """Thin wrapper over pcbnew for placing a netlist and adding copper."""
+
+    def __init__(self, project, out_dir, netlist, origin=(100.0, 100.0), rules=None):
+        import pcbnew
+        self.rules = rules or {}
+        self.pcbnew = pcbnew
+        self.project, self.out_dir = project, out_dir
+        self.board = pcbnew.BOARD()
+        self.ox, self.oy = origin
+        self.nets = {}
+        self.fps = {}
+        self.zones_made = False
+        self.tracks = []      # (layer, a_abs, b_abs, width, net) -- SWIG iterators are broken on py3.14
+        self.vias = []        # ((x_abs, y_abs), net)
+        self.netlist = netlist
+        for ref, d in netlist.items():
+            lib, name = d["footprint"].split(":")
+            path = LOCAL_FP if lib == "Tumble" else f"{FPDIR}/{lib}.pretty"
+            fp = pcbnew.FootprintLoad(path, name)
+            if fp is None:
+                raise SystemExit("footprint not found")
+            fp.SetFPID(pcbnew.LIB_ID(lib, name))
+            fp.SetReference(ref)
+            fp.SetValue(d["value"])
+            for key, val in d.get("fields", {}).items():
+                if key == "Description":               # footprints already have this field
+                    fp.GetField(pcbnew.FIELD_T_DESCRIPTION).SetText(val)
+                elif val:
+                    f = pcbnew.PCB_FIELD(fp, fp.GetNextFieldOrdinal(), key)
+                    f.SetText(val)
+                    f.SetVisible(False)
+                    f.SetLayer(pcbnew.F_Fab)
+                    fp.Add(f)
+            fp.SetExcludedFromBOM(not d.get("in_bom", True))
+            if d.get("dnp"):
+                fp.SetDNP(True)
+                fp.SetExcludedFromBOM(True)
+                fp.SetExcludedFromPosFiles(True)
+            fp.SetPath(pcbnew.KIID_PATH("/" + d["uuid"]))
+            fp.SetSheetname("/")
+            fp.SetSheetfile(f"{project}.kicad_sch")
+            self.board.Add(fp)
+            for pad in fp.Pads():
+                num = pad.GetNumber()
+                n = d["pads"].get(num)
+                if n:
+                    pad.SetNet(self.net(n))
+                elif num and d.get("nc_pins") is not None and num in d["nc_pins"]:
+                    pname = d["nc_pins"][num]
+                    mid = f"-{pname}" if pname and pname not in ("~", num) else ""
+                    mid = mid.replace("/", "{slash}")
+                    pad.SetNet(self.net(f"unconnected-({ref}{mid}-Pad{num})"))
+            fp.Reference().SetVisible(False)
+            fp.Value().SetVisible(False)
+            self.fps[ref] = fp
+
+    # -------------------------------------------------- helpers
+    def V(self, x, y):
+        return self.pcbnew.VECTOR2I(self.pcbnew.FromMM(self.ox + x), self.pcbnew.FromMM(self.oy + y))
+
+    def net(self, name):
+        if not name.startswith(("/", "unconnected-")):
+            name = "/" + name          # local labels in the schematic
+        if name not in self.nets:
+            n = self.pcbnew.NETINFO_ITEM(self.board, name)
+            self.board.Add(n)
+            self.nets[name] = n
+        return self.nets[name]
+
+    def place(self, ref, x, y, rot=0.0, back=False):
+        fp = self.fps[ref]
+        fp.SetPosition(self.V(x, y))
+        if back and not fp.IsFlipped():
+            fp.Flip(self.V(x, y), self.pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
+        fp.SetOrientationDegrees(rot)
+
+    def pad(self, ref, num):
+        ps = [p for p in self.fps[ref].Pads() if p.GetNumber() == num]
+        return ps[0]
+
+    def pad_xy(self, ref, num):
+        p = self.pad(ref, num).GetPosition()
+        return self.pcbnew.ToMM(p.x) - self.ox, self.pcbnew.ToMM(p.y) - self.oy
+
+    def track(self, a, b, w, net, layer="F"):
+        pcbnew = self.pcbnew
+        if abs(a[0] - b[0]) < 1e-6 and abs(a[1] - b[1]) < 1e-6:
+            return
+        t = pcbnew.PCB_TRACK(self.board)
+        t.SetStart(self.V(*a))
+        t.SetEnd(self.V(*b))
+        t.SetWidth(pcbnew.FromMM(w))
+        t.SetLayer(pcbnew.F_Cu if layer == "F" else pcbnew.B_Cu)
+        t.SetNet(self.net(net))
+        self.board.Add(t)
+        self.tracks.append((layer, (self.ox + a[0], self.oy + a[1]), (self.ox + b[0], self.oy + b[1]),
+                            w, self.net(net).GetNetname()))
+
+    def path(self, pts, w, net, layer="F"):
+        for a, b in zip(pts, pts[1:]):
+            self.track(a, b, w, net, layer)
