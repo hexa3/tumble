@@ -32,7 +32,7 @@ def dump(node, indent=0):
         if isinstance(node, Q):
             return '"' + node.replace("\\", "\\\\").replace('"', '\\"') + '"'
         if isinstance(node, float):
-            return f"{node:.6f}".rstrip("0").rstrip(".")
+            return f"{node:.4f}".rstrip("0").rstrip(".")
         return str(node)
     simple = all(not isinstance(x, list) for x in node)
     if simple:
