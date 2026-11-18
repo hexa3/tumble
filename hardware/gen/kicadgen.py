@@ -239,3 +239,41 @@ def write_schematic(project, title, parts, out_dir, rev="1.0", notes=(), paper="
     with open(os.path.join(out_dir, "netlist.json"), "w") as f:
         json.dump(netlist, f, indent=1)
     return netlist
+
+
+# ------------------------------------------------------------------ project files
+# OSH Park 2-layer limits (docs.oshpark.com/services/two-layer): 6 mil trace/space, 10 mil drill,
+# 5 mil annular ring.  DRC enforces exactly these; the generators aim for >= 0.16 mm and 0.6/0.3 vias.
+OSH = dict(clearance=0.1524, track=0.1524, drill=0.254, via=0.508, annular=0.127)
+
+
+def write_project(project, out_dir, clearance=0.16, track=0.25, edge=0.4, extra_rules=""):
+    d = json.load(open(os.path.join(GEN, "template.kicad_pro")))
+    d["meta"]["filename"] = f"{project}.kicad_pro"
+    r = d["board"]["design_settings"]["rules"]
+    r.update(min_copper_edge_clearance=edge, min_clearance=OSH["clearance"], min_track_width=OSH["track"],
+             min_via_diameter=OSH["via"], min_through_hole_diameter=OSH["drill"], min_hole_clearance=0.15,
+             min_hole_to_hole=0.25, min_via_annular_width=OSH["annular"], min_text_height=0.6,
+             min_silk_clearance=0.0, solder_mask_to_copper_clearance=0.0, min_resolved_spokes=1)
+    sev = d["board"]["design_settings"]["rule_severities"]
+    sev["missing_courtyard"] = "ignore"
+    sev["lib_footprint_issues"] = "ignore"     # stock libs aren't table-registered in CI
+    sev["lib_footprint_mismatch"] = "ignore"
+    sev["silk_edge_clearance"] = "ignore"
+    d.setdefault("erc", {}).setdefault("rule_severities", {})["lib_symbol_mismatch"] = "ignore"
+    d["erc"]["rule_severities"]["lib_symbol_issues"] = "ignore"
+    nc = d["net_settings"]["classes"][0]
+    nc.update(clearance=clearance, track_width=track, via_diameter=0.6, via_drill=0.3)
+    with open(os.path.join(out_dir, f"{project}.kicad_pro"), "w") as f:
+        json.dump(d, f, indent=2)
+    with open(os.path.join(out_dir, "fp-lib-table"), "w") as f:
+        f.write('(fp_lib_table\n  (version 7)\n  (lib (name "Tumble")(type "KiCad")'
+                '(uri "${KIPRJMOD}/../lib/Tumble.pretty")(options "")(descr "TinyDie Tumble parts"))\n)\n')
+    with open(os.path.join(out_dir, "sym-lib-table"), "w") as f:
+        f.write('(sym_lib_table\n  (version 7)\n  (lib (name "Tumble")(type "KiCad")'
+                '(uri "${KIPRJMOD}/../lib/Tumble.kicad_sym")(options "")(descr "TinyDie Tumble parts"))\n)\n')
+    dru = ("(version 1)\n"
+           "(rule \"hole to copper\"\n"
+           "  (constraint hole_clearance (min 0.2)))\n" + extra_rules)
+    with open(os.path.join(out_dir, f"{project}.kicad_dru"), "w") as f:
+        f.write(dru)
