@@ -301,7 +301,7 @@ class PcbBuilder:
             path = LOCAL_FP if lib == "Tumble" else f"{FPDIR}/{lib}.pretty"
             fp = pcbnew.FootprintLoad(path, name)
             if fp is None:
-                raise SystemExit("footprint not found")
+                raise SystemExit(f"footprint {d['footprint']} not found")
             fp.SetFPID(pcbnew.LIB_ID(lib, name))
             fp.SetReference(ref)
             fp.SetValue(d["value"])
