@@ -6,3 +6,9 @@ hardware/*/fp-info-cache
 hardware/*/*-backups/
 hardware/*/~*.lck
 hardware/fab/*/gerbers/
+# build.sh working dirs; the keepers are copied to hardware/release/
+hardware/face/
+hardware/core/
+hardware/base/
+hardware/fab/
+hardware/lib/
