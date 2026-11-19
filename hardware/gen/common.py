@@ -207,3 +207,146 @@ def autoplace(pb, wanted, back=(), fixed=(), reserve=(), margin=0.1, limit=8.0):
             hits = [q for q in rects if set(q[0]) & set(sides_of(ref)) and overlap(r, q[1:], margin)]
             raise SystemExit(f"autoplace: no room for {ref} near ({px}, {py}); at its spot it hits {hits}")
     print("  autoplace moved:", " ".join(moved) or "nothing")
+
+
+def gold_rect(pb, x1, y1, x2, y2, side="B"):
+    """Filled copper rectangle with the mask opened over it: reads as solid gold."""
+    pcbnew = pb.pcbnew
+    for layer in ((pcbnew.B_Cu, pcbnew.B_Mask) if side == "B" else (pcbnew.F_Cu, pcbnew.F_Mask)):
+        s = pcbnew.PCB_SHAPE(pb.board, pcbnew.SHAPE_T_RECT)
+        s.SetStart(pb.V(x1, y1))
+        s.SetEnd(pb.V(x2, y2))
+        s.SetLayer(layer)
+        s.SetFilled(True)
+        s.SetWidth(0)
+        pb.board.Add(s)
+
+
+def gold_line(pb, a, b, side="F", width=0.25):
+    pcbnew = pb.pcbnew
+    for layer in ((pcbnew.B_Cu, pcbnew.B_Mask) if side == "B" else (pcbnew.F_Cu, pcbnew.F_Mask)):
+        s = pcbnew.PCB_SHAPE(pb.board, pcbnew.SHAPE_T_SEGMENT)
+        s.SetStart(pb.V(*a))
+        s.SetEnd(pb.V(*b))
+        s.SetLayer(layer)
+        s.SetWidth(pcbnew.FromMM(width))
+        pb.board.Add(s)
+
+
+def stitch(pb, rt, step=3.0, net="GND"):
+    """GND vias on a loose grid wherever both layers are free: ties the two pours together."""
+    n = 0
+    k = int(2 * HALF / step)
+    for i in range(k + 1):
+        for j in range(k + 1):
+            gx, gy = -HALF + 1.5 + i * step, -HALF + 1.5 + j * step
+            q = (pb.ox + gx, pb.oy + gy)
+            c = rt.ij(*q)
+            if rt.via_ok(q, "/__STITCH__") and rt.free("F", c, "/__STITCH__") and rt.free("B", c, "/__STITCH__"):
+                pb.via(gx, gy, net)
+                rt.add_via(q, "/" + net)
+                n += 1
+    return n
+
+
+def ground(pb, rt, side="F", skip=()):
+    """Tie every SMD ground pad on `side` to the pours: a via beside it if there's room, otherwise an
+    A* link to the nearest ground copper already on the board.  Returns (vias, links, failures)."""
+    pcbnew = pb.pcbnew
+    lid = pcbnew.F_Cu if side == "F" else pcbnew.B_Cu
+    ox, oy = pb.ox, pb.oy
+    n_via = n_link = 0
+    lonely = []
+    for fp in pb.fps.values():
+        for pd in fp.Pads():
+            if pd.GetNetname() != "/GND" or not pd.IsOnLayer(lid) or pd.GetAttribute() != pcbnew.PAD_ATTRIB_SMD:
+                continue
+            if fp.GetReference()[0] in "PXT" and fp.GetReference() != "TP":   # spring pins/lands: pour-connected
+                continue
+            if (fp.GetReference(), pd.GetNumber()) in skip:
+                continue
+            px, py = pcbnew.ToMM(pd.GetPosition().x), pcbnew.ToMM(pd.GetPosition().y)
+            done = False
+            for r in (0.75, 0.9, 1.05, 1.2, 1.4, 1.6, 1.9, 2.2, 2.6, 3.0, 3.5):
+                for k in range(24):
+                    q = (round(px + r * math.cos(k * math.pi / 12), 2), round(py + r * math.sin(k * math.pi / 12), 2))
+                    if rt.via_ok(q, "/GND") and all(
+                            rt.free(side, rt.ij(px + (q[0] - px) * t / 6, py + (q[1] - py) * t / 6), "/GND")
+                            for t in range(1, 7)):
+                        pb.track((px - ox, py - oy), (q[0] - ox, q[1] - oy), 0.25, "GND", side)
+                        pb.via(q[0] - ox, q[1] - oy, "GND")
+                        rt.add_track(side, (px, py), q, 0.25, "/GND")
+                        rt.add_via(q, "/GND")
+                        done = True
+                        n_via += 1
+                        break
+                if done:
+                    break
+            if not done:
+                lonely.append(pd)
+    fails = []
+    for pd in lonely:
+        cop = [("track", L, a, b, w) for L, a, b, w, n in pb.tracks if n == "/GND"] + \
+              [("via", p) for p, n in pb.vias if n == "/GND"]
+        ok, tr, vs = rt.route_net("/GND", [pd], 0.2, seeds=rt.copper_cells(cop))
+        if not ok:
+            fails.append(f"{pd.GetParentFootprint().GetReference()}.{pd.GetNumber()}")
+            continue
+        n_link += 1
+        for L, a, b, w, n in tr:
+            pb.track((a[0] - ox, a[1] - oy), (b[0] - ox, b[1] - oy), w, "GND", L)
+        for p, n in vs:
+            pb.via(p[0] - ox, p[1] - oy, "GND")
+    return n_via, n_link, fails
+
+
+def escape_stubs(pb, refs, length=0.7, width=0.2, spread=0.8, gnd_vias=False):
+    """Short outward stubs from every signal pad of fine-pitch parts, so the grid router can reach
+    them: returns ({net: [stub end, absolute mm]}, {(ref, pad number)} now served by a stub).
+    Pins closer than `spread` fan out to that pitch, so no stub end sits in a neighbour's clearance.
+    Ground pads are left to ground()."""
+    pcbnew = pb.pcbnew
+    ends, done = {}, set()
+    for ref in refs:
+        fp = pb.fps[ref]
+        cx, cy = pcbnew.ToMM(fp.GetPosition().x), pcbnew.ToMM(fp.GetPosition().y)
+        side = "B" if fp.IsFlipped() else "F"
+        info, sides = [], {}
+        for pd in fp.Pads():
+            px, py = pcbnew.ToMM(pd.GetPosition().x), pcbnew.ToMM(pd.GetPosition().y)
+            dx, dy = px - cx, py - cy
+            pbb = pd.GetBoundingBox()
+            pw, ph = pbb.GetWidth(), pbb.GetHeight()
+            horiz = pw > ph * 1.2 or (abs(pw - ph) <= ph * 0.2 and abs(dx) >= abs(dy))   # long axis = escape axis
+            key = ("x", 1 if dx > 0 else -1) if horiz else ("y", 1 if dy > 0 else -1)
+            lat = py if key[0] == "x" else px
+            sides.setdefault(key, []).append(lat)
+            info.append((pd, px, py, key, lat))
+        for pd, px, py, key, lat in info:
+            net = pd.GetNetname()
+            if not net or net.startswith("unconnected") or (net == "/GND" and not gnd_vias):
+                continue
+            if net == "/GND" and pd.GetBoundingBox().GetWidth() > pcbnew.FromMM(1.6) and \
+                    pd.GetBoundingBox().GetHeight() > pcbnew.FromMM(1.6):
+                continue                                        # exposed pads: not escaped
+            lats = sorted(set(round(v, 3) for v in sides[key]))
+            pitch = min((b - a for a, b in zip(lats, lats[1:]) if b - a > 0.01), default=spread)
+            mid = (lats[0] + lats[-1]) / 2
+            new_lat = mid + (lat - mid) * (spread / pitch if pitch < spread else 1.0)
+            bb = pd.GetBoundingBox()
+            half = (pcbnew.ToMM(bb.GetWidth()) if key[0] == "x" else pcbnew.ToMM(bb.GetHeight())) / 2
+            fan = abs(new_lat - lat)
+            if key[0] == "x":
+                p1 = (px + key[1] * (half + 0.25), py)
+                e = (p1[0] + key[1] * (length + fan), new_lat)
+            else:
+                p1 = (px, py + key[1] * (half + 0.25))
+                e = (new_lat, p1[1] + key[1] * (length + fan))
+            for a_, b_ in (((px, py), p1), (p1, e)):
+                pb.track((a_[0] - pb.ox, a_[1] - pb.oy), (b_[0] - pb.ox, b_[1] - pb.oy), width, net[1:], side)
+            if net == "/GND":                                  # ground: the stub ends in a via
+                pb.via(e[0] - pb.ox, e[1] - pb.oy, "GND")
+            else:
+                ends.setdefault(net, []).append(e)
+            done.add((ref, pd.GetNumber()))
+    return ends, done
