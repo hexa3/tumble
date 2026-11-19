@@ -23,7 +23,7 @@ GEN = os.path.dirname(os.path.abspath(__file__))
 HW = os.path.dirname(GEN)
 FAB = os.path.join(HW, "fab")
 BOARDS = ["face", "core", "base"]
-LAYERS = "F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask"
+LAYERS = "F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts"
 
 
 def cli(*args):
