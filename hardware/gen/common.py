@@ -84,7 +84,7 @@ def art(pb, side, x1, y1, x2, y2, pad=0.35):
     pb.art.append((side, x1 - pad, y1 - pad, x2 + pad, y2 + pad))
 
 
-def gold_txt(pb, s, x, y, side="F", size=1.2, rot=0):
+def gold_text(pb, s, x, y, side="F", size=1.2, rot=0):
     """Centred lettering in ENIG gold: copper text with the mask opened over it.  Registers its area."""
     cu, mask = ("F.Cu", "F.Mask") if side == "F" else ("B.Cu", "B.Mask")
     t = pb.text(s, x, y, layer=cu, size=size, rot=rot, bold=True)
@@ -101,7 +101,7 @@ def board_label(pb, s, side, at=None):
     """'A · FACE  1/3' etc.: same place, size and finish on every visible side (`at` moves it on a
     hidden side where that spot is taken)."""
     x, y = at or LABEL_XY
-    gold_txt(pb, s, x, y, side=side, size=0.9)
+    gold_text(pb, s, x, y, side=side, size=0.9)
 
 
 def place_common(pb, land_refs=None, pin_refs=None):
