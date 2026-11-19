@@ -123,3 +123,133 @@ class Router:
         bb = (min(a[0], b[0]) - w / 2, min(a[1], b[1]) - w / 2,
               max(a[0], b[0]) + w / 2, max(a[1], b[1]) + w / 2)
         self._mark([layer], bb, lambda px, py: max(self._dist_seg(px, py, a, b) - w / 2, 0.0), net)
+
+    def add_via(self, p, net, drill=0.3):
+        lim = drill / 2 + 0.3 / 2 + 0.25          # hole-to-hole, any net
+        ci, cj = self.ij(*p)
+        k = int(lim / self.g) + 1
+        for i in range(ci - k, ci + k + 1):
+            for j in range(cj - k, cj + k + 1):
+                x, y = self.xy(i, j)
+                if math.hypot(x - p[0], y - p[1]) < lim:
+                    self.hblock.add((i, j))
+        r = self.via_d / 2
+        bb = (p[0] - r, p[1] - r, p[0] + r, p[1] + r)
+        self._mark(LAYERS, bb, lambda px, py: max(math.hypot(px - p[0], py - p[1]) - r, 0.0), net)
+
+    # ------------------------------------------------------------ queries
+    def free(self, L, c, net):
+        i, j = c
+        if not (0 <= i < self.nx and 0 <= j < self.ny):
+            return False
+        x, y = self.xy(i, j)
+        if not self.inside_board(x, y, self.edge + 0.2):
+            return False
+        for kl, a, b, c2, d in self.keepout:
+            if (kl is None or kl == L) and a <= x <= c2 and b <= y <= d:
+                return False
+        for cx, cy, r in self.keepout_c:
+            if (x - cx) ** 2 + (y - cy) ** 2 < r * r:
+                return False
+        s = self.tblock[L].get(c)
+        return not s or s <= {net}
+
+    def via_ok(self, p, net, cell=None):
+        c = cell or self.ij(*p)
+        x, y = self.xy(*c)
+        if not self.inside_board(x, y, self.edge + self.via_d / 2):
+            return False
+        for kl, a, b, c2, d in self.keepout:
+            if a <= x <= c2 and b <= y <= d:
+                return False
+        for cx, cy, r in self.keepout_c:
+            if (x - cx) ** 2 + (y - cy) ** 2 < (r + self.via_d / 2) ** 2:
+                return False
+        for a, b, c2, d in self.via_keepout:
+            if a <= x <= c2 and b <= y <= d:
+                return False
+        if c in self.hblock:
+            return False
+        s = self.vblock.get(c)
+        return not s or s <= {net}
+
+    def pad_cells(self, pad):
+        layers, bb, (cx, cy), circ = self.pad_info(pad)
+        i1, j1 = self.ij(bb[0], bb[1])
+        i2, j2 = self.ij(bb[2], bb[3])
+        out = set()
+        for i in range(i1, i2 + 1):
+            for j in range(j1, j2 + 1):
+                x, y = self.xy(i, j)
+                inside = (math.hypot(x - cx, y - cy) <= (bb[2] - bb[0]) / 2 - 0.1 if circ
+                          else bb[0] + 0.1 <= x <= bb[2] - 0.1 and bb[1] + 0.1 <= y <= bb[3] - 0.1)
+                if inside:
+                    for L in layers:
+                        out.add((L, i, j))
+        return out, (cx, cy)
+
+    # ------------------------------------------------------------ search
+    def _astar(self, net, sources, targets, tcenter):
+        tx, ty = self.ij(*tcenter)
+
+        def h(i, j):
+            dx, dy = abs(i - tx), abs(j - ty)
+            return (max(dx, dy) - min(dx, dy)) + 1.4142 * min(dx, dy)
+
+        openq, best, came = [], {}, {}
+        for (L, i, j) in sources:
+            st = (L, i, j, -1)
+            best[st] = 0.0
+            heapq.heappush(openq, (h(i, j), 0.0, st))
+        while openq:
+            f, g, st = heapq.heappop(openq)
+            if g > best.get(st, 1e18):
+                continue
+            L, i, j, d = st
+            if (L, i, j) in targets:
+                path = [(L, i, j)]
+                while st in came:
+                    st = came[st]
+                    path.append(st[:3])
+                return path[::-1]
+            # moves
+            for nd, (di, dj) in enumerate(DIRS):
+                c = (i + di, j + dj)
+                if not self.free(L, c, net) and (L, *c) not in targets:
+                    continue
+                step = 1.4142 if di and dj else 1.0
+                turn = 0.0 if d < 0 else min((nd - d) % 8, (d - nd) % 8) * 0.6
+                layer_pen = self.layer_cost[L]
+                ng = g + step * (1 + layer_pen) + turn
+                ns = (L, c[0], c[1], nd)
+                if ng < best.get(ns, 1e18):
+                    best[ns] = ng
+                    came[ns] = st
+                    heapq.heappush(openq, (ng + h(*c), ng, ns))
+            # via
+            if self.via_ok(None, net, (i, j)):
+                oL = "B" if L == "F" else "F"
+                if self.free(oL, (i, j), net) or (oL, i, j) in targets:
+                    ns = (oL, i, j, d)
+                    ng = g + self.via_cost
+                    if ng < best.get(ns, 1e18):
+                        best[ns] = ng
+                        came[ns] = st
+                        heapq.heappush(openq, (ng + h(i, j), ng, ns))
+        return None
+
+    def copper_cells(self, items):
+        """Cells covered by existing same-net copper: [('track', L, a, b, w) | ('via', p)]."""
+        out = set()
+        for it in items:
+            if it[0] == "via":
+                i, j = self.ij(*it[1])
+                out |= {("F", i, j), ("B", i, j)}
+            else:
+                _, L, a, b, w = it
+                n = max(1, int(math.hypot(b[0] - a[0], b[1] - a[1]) / (self.g / 2)))
+                for k in range(n + 1):
+                    x = a[0] + (b[0] - a[0]) * k / n
+                    y = a[1] + (b[1] - a[1]) * k / n
+                    out.add((L, *self.ij(x, y)))
+        return out
