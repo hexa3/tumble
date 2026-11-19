@@ -9,7 +9,7 @@ from kicadgen import Part
 HALF = 25.0            # 50 x 50 mm: room below the LED field for the matrix driver
 RADIUS = 5.0           # corner radius
 HOLE = 21.0            # M2 mounting holes on a 42 mm square
-KEYLINE = 0.8          # copper keyilne inset from the edge
+KEYLINE = 0.8          # copper keyline inset from the edge
 ROUTE_EDGE = 1.35      # routed copper stays this far inside the edge (inside the keyline)
 GAP_MM = 4.5           # board-to-board gap = standoff length; spring pins work at 4.3-5.0 mm
 
