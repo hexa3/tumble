@@ -129,3 +129,37 @@ def checked(key):
 def unit_price(key, qty):
     br = entry(key)[4]
     return [p for q, p in br if q <= max(qty, 1)][-1]
+
+
+# LCSC (JLCPCB's parts arm) alternatives, user's choice on 2026-11-11 to buy whichever is cheapest.
+# Entries marked "live" were read from JLCPCB's parts API on 2026-11-11 (qty-1 price); "est" are guesses.
+# key: (LCSC part #, LCSC MPN if different, qty-1 unit price $, note)
+LCSC = {
+    "LED": ("C25503856", "XINGLIGHT XL-1005UYC", 0.0132, "live 2026-11-11, 175,965 in stock"),
+    "IS31FL3733B": ("C506251", "ISSI IS31FL3733-QFLS4-TR (B version out of stock)", 1.4516, "live 2026-11-11"),
+    "STM32G041": ("C724068", "", 2.022, "live 2026-11-11; only 3 in stock"),
+    "LIS3DH": ("C15134", "", 1.8063, "live 2026-11-11"),
+    "DRV2605L": ("C527464", "", 1.2309, "live 2026-11-11"),
+    "MAX17048": ("C2682616", "", 1.9599, "live 2026-11-11"),
+    "TPS61040": ("C7722", "", 0.8598, "live 2026-11-11"),
+    "MMBT3904": ("C20526", "JSCJ MMBT3904", 0.0104, "live 2026-11-11, basic"),
+    "AO3401A": ("C15127", "", 0.0821, "live 2026-11-11, basic"),
+    "2N7002": ("C8545", "JSCJ 2N7002", 0.0155, "live 2026-11-11, basic"),
+    "SCHOTTKY": ("C8598", "JSCJ B5819W SL", 0.0265, "live 2026-11-11, basic"),
+    "USBLC6": ("C7519", "", 0.1572, "live 2026-11-11"),
+    "MCP73831": ("C424093", "", 0.7978, "live 2026-11-11"),
+    "RT9080": ("C841192", "", 0.1208, "live 2026-11-11"),
+    "USBC": ("C3020560", "", 1.02, "live 2026-11-11"),
+    "L10u": ("C907910", "", 0.2058, "live 2026-11-11"),
+    "LED_RED_0603": ("C2286", "KENTO KT-0603R", 0.0077, "live 2026-11-11, basic"),
+}
+for _k in [k for k in PARTS if k.startswith(("R", "C")) and "_04" in k or k.endswith("_0603") and k[0] in "RC"]:
+    LCSC.setdefault(_k, ("", "generic, JLC basic part", 0.005, "est"))
+
+
+def cheapest(key, qty):
+    """(source, unit price) of the cheaper of DigiKey and LCSC for this part."""
+    dk = unit_price(key, qty)
+    if key in LCSC and LCSC[key][2] < dk:
+        return "LCSC", LCSC[key][2]
+    return "DigiKey", dk
