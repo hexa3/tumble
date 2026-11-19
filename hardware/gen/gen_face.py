@@ -73,3 +73,36 @@ def register_index(sw, cs):
 def pixel_map():
     """[(row, col, sw, cs)] for all 121 LEDs, row-major."""
     return [(i, j, sw_of(j), cs_of(i)) for i in range(N) for j in range(N)]
+
+
+def parts():
+    P = []
+    for i, j, sw, cs in pixel_map():
+        P.append(Part(f"D{i * N + j + 1}", ("Device", "LED"), "YEL", LED_FP,
+                      {"1": f"SW{sw}", "2": f"CS{cs}"}, part="LED", group="D"))
+    pins = {"5": "GND", "12": "GND", "20": "VBAT", "29": "VBAT", "34": "GND", "35": "ISET",
+            "37": "VBAT", "38": "VBAT", "39": "3V3", "41": "SDA", "42": "SCL", "43": "GND", "44": "GND",
+            "45": "LED_INTB", "46": "LED_SDB", "47": "GND", "48": "GND", "49": "GND"}
+    for n, p in enumerate([2, 3, 4, 6, 7, 8, 9, 10, 11, 13, 14], 1):
+        pins[str(p)] = f"SW{n}"
+    for n, p in enumerate([16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27], 1):
+        pins[str(p)] = f"CS{n}"
+    P.append(Part("U1", ("Driver_LED", "IS31FL3733-QF"), "IS31FL3733B", QFN, pins,
+                  part="IS31FL3733B", group="U"))
+
+    def R(ref, val, a, b, key):
+        return Part(ref, ("Device", "R"), val, R0402, {"1": a, "2": b}, part=key, group="R")
+
+    def C(ref, val, a, b, key, fp=C0402):
+        return Part(ref, ("Device", "C"), val, fp, {"1": a, "2": b}, part=key, group="C")
+
+    P += [
+        R("R1", "20k", "ISET", "GND", "R20k_0402"),        # I_OUT = 840 / R_ISET * GCC / 256 = 42 mA at GCC 255
+        R("R2", "100k", "LED_SDB", "GND", "R100k_0402"),   # driver held in shutdown until the MCU enables it
+        C("C1", "1uF", "VBAT", "GND", "C1u_0402"), C("C2", "100nF", "VBAT", "GND", "C100n_0402"),
+        C("C3", "10uF", "VBAT", "GND", "C10u_0603", C0603), C("C4", "10uF", "VBAT", "GND", "C10u_0603", C0603),
+        C("C5", "1uF", "VBAT", "GND", "C1u_0402"),
+        C("C7", "1uF", "3V3", "GND", "C1u_0402"),
+    ]
+    P += K.lands(K.LINK_AB) + K.holes()
+    return P
