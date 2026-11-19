@@ -112,3 +112,98 @@ def place_common(pb, land_refs=None, pin_refs=None):
             pb.place(f"{land_refs}{i + 1}", x, y, back=True)
         if pin_refs:
             pb.place(f"{pin_refs}{i + 1}", x, y)
+
+
+def make_router(pb, Router, maxw=0.2, clearance=0.17, grid=0.1, via_cost=6.0, layer_cost=None,
+                hole_keepout=2.6, shift=(0.0, 0.0), edge=ROUTE_EDGE):
+    """Grid router primed with everything already on the board.
+
+    shift moves the routing grid, so that fine-pitch pads can be put on grid points."""
+    rt = Router(pb.ox - HALF + shift[0], pb.oy - HALF + shift[1], 2 * HALF, 2 * HALF, grid=grid, clearance=clearance,
+                edge_clear=edge - 0.2, max_width=maxw, corner_r=RADIUS,
+                layer_cost=layer_cost or {"F": 0.0, "B": 0.0}, via_cost=via_cost)
+    for x, y in HOLES:      # room for the standoff and the screw head (track centre stays outside)
+        rt.keepout_c.append((pb.ox + x, pb.oy + y, hole_keepout + maxw / 2))
+    for x1, y1, x2, y2 in getattr(pb, "via_keepouts", []):   # e.g. between a Tag-Connect's pads
+        rt.via_keepout.append((pb.ox + x1, pb.oy + y1, pb.ox + x2, pb.oy + y2))
+    for side, x1, y1, x2, y2 in getattr(pb, "art", []):   # artwork: no copper, no vias
+        rt.keepout.append((side, pb.ox + x1, pb.oy + y1, pb.ox + x2, pb.oy + y2))
+    for fp in pb.fps.values():
+        for pad in fp.Pads():
+            rt.add_pad(pad)
+    for L, a, b, w, n in pb.tracks:
+        rt.add_track(L, a, b, w, n)
+    for p, n in pb.vias:
+        rt.add_via(p, n)
+    return rt
+
+
+def courtyard(pb, ref):
+    """Courtyard bbox (board-centred coords) on whichever side the part sits."""
+    pcbnew = pb.pcbnew
+    fp = pb.fps[ref]
+    layer = pcbnew.B_CrtYd if fp.IsFlipped() else pcbnew.F_CrtYd
+    b = fp.GetCourtyard(layer).BBox()
+    if b.GetWidth() == 0:
+        b = fp.GetBoundingBox(False)
+    return (pcbnew.ToMM(b.GetLeft()) - pb.ox, pcbnew.ToMM(b.GetTop()) - pb.oy,
+            pcbnew.ToMM(b.GetRight()) - pb.ox, pcbnew.ToMM(b.GetBottom()) - pb.oy)
+
+
+def overlap(a, b, margin=0.0):
+    """Do rectangles a and b (x1, y1, x2, y2) overlap, with `margin` of clearance?"""
+    return a[0] < b[2] + margin and b[0] < a[2] + margin and a[1] < b[3] + margin and b[1] < a[3] + margin
+
+
+def autoplace(pb, wanted, back=(), fixed=(), reserve=(), margin=0.1, limit=8.0):
+    """Place each part at its wanted (x, y, rot), or the nearest spot where its courtyard is clear.
+
+    wanted: {ref: (x, y, rot)} in placement order.  fixed: refs already placed that others must avoid.
+    reserve: extra (side, x1, y1, x2, y2) areas to keep empty.  Parts on different sides don't clash,
+    except through-hole parts, which block both."""
+    side = {}
+    rects = []                                   # (side, x1, y1, x2, y2)
+
+    def sides_of(ref):
+        fp = pb.fps[ref]
+        th = any(p.GetAttribute() in (pb.pcbnew.PAD_ATTRIB_PTH, pb.pcbnew.PAD_ATTRIB_NPTH) for p in fp.Pads())
+        return "FB" if th else ("B" if fp.IsFlipped() else "F")
+
+    for ref in fixed:
+        rects.append((sides_of(ref),) + courtyard(pb, ref))
+    for x, y in HOLES:
+        rects.append(("FB", x - 2.6, y - 2.6, x + 2.6, y + 2.6))
+    rects += list(reserve)
+    rects += [(sd,) + tuple(r) for sd, *r in getattr(pb, "art", [])]
+    lim = HALF - 0.6
+
+    def clash(sd, r):
+        if r[0] < -lim or r[1] < -lim or r[2] > lim or r[3] > lim:
+            return True
+        return any(set(sd) & set(q[0]) and overlap(r, q[1:], margin) for q in rects)
+
+    moved = []
+    for ref, (px, py, pr) in wanted.items():
+        done = False
+        rad = 0.0
+        while rad <= limit and not done:
+            n = max(1, int(2 * math.pi * rad / 0.2))
+            for k in range(n):
+                a = 2 * math.pi * k / n
+                x, y = round(px + rad * math.cos(a), 2), round(py + rad * math.sin(a), 2)
+                pb.place(ref, x, y, pr, back=ref in back)
+                sd = sides_of(ref)
+                r = courtyard(pb, ref)
+                if not clash(sd, r):
+                    rects.append((sd,) + r)
+                    done = True
+                    if rad > 0:
+                        moved.append(f"{ref}+{rad:.1f}")
+                    break
+            rad = round(rad + 0.2, 2)
+        if not done:
+            pb.place(ref, px, py, pr, back=ref in back)
+            r = courtyard(pb, ref)
+            hits = [q for q in rects if set(q[0]) & set(sides_of(ref)) and overlap(r, q[1:], margin)]
+            raise SystemExit(f"autoplace: no room for {ref} near ({px}, {py}); at its spot it hits {hits}")
+    print("  autoplace moved:", " ".join(moved) or "nothing")
