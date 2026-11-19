@@ -253,3 +253,92 @@ class Router:
                     y = a[1] + (b[1] - a[1]) * k / n
                     out.add((L, *self.ij(x, y)))
         return out
+
+    def route_net(self, net, pads, width, seeds=None, extra=None):
+        """Connect pads (pcbnew PADs) as a tree. Returns ok, tracks, vias.
+
+        `seeds` are cells of copper already on the board for this net; when
+        given, the tree starts from them and every pad is joined to it."""
+        cells = [self.pad_cells(p) for p in pads]
+        for pt in extra or []:            # extra targets: copper ends that aren't pads
+            c = self.ij(*pt)
+            cells.append(({("F", c[0], c[1])}, pt))
+            pads = list(pads) + [None]
+        connected = [0]
+        if seeds:
+            tree = set(seeds)
+            cells = [(set(), (0, 0))] + cells
+            pads = [None] + list(pads)
+        else:
+            tree = set(cells[0][0])
+        if not tree:                      # first pad has no usable cell: report, don't crash
+            return False, [], []
+        paths = []
+        remaining = list(range(1, len(pads)))
+        while remaining:
+            # nearest remaining pad to the tree
+            def dist_to_tree(k):
+                cx, cy = cells[k][1]
+                return min(math.hypot(cx - self.xy(i, j)[0], cy - self.xy(i, j)[1])
+                           for _, i, j in tree)
+            remaining.sort(key=dist_to_tree)
+            k = remaining.pop(0)
+            tgt, tc = cells[k]
+            if tree & tgt:
+                tree |= tgt
+                continue
+            path = self._astar(net, tree, tgt, tc)
+            if not path:
+                return False, [], []
+            paths.append((path, k))
+            tree |= set(path) | tgt
+            # a via cell exists on both layers
+            for a, b in zip(path, path[1:]):
+                if a[0] != b[0]:
+                    tree.add(("F", a[1], a[2]))
+                    tree.add(("B", a[1], a[2]))
+            connected.append(k)
+
+        tracks, vias = [], []
+        keep = {p[0][1:] for p, _ in paths} | {p[-1][1:] for p, _ in paths}
+        pad_center = {}
+        for k in range(len(cells)):
+            for c in cells[k][0]:
+                pad_center[c] = cells[k][1]
+        for path, k in paths:
+            # split into same-layer runs
+            runs, cur = [], [path[0]]
+            for a, b in zip(path, path[1:]):
+                if a[0] != b[0]:
+                    runs.append(cur)
+                    vias.append((self.xy(a[1], a[2]), net))
+                    cur = [b]
+                else:
+                    cur.append(b)
+            runs.append(cur)
+            for run in runs:
+                L = run[0][0]
+                pts = [run[0]]
+                for idx in range(1, len(run) - 1):
+                    p0, p1, p2 = pts[-1], run[idx], run[idx + 1]
+                    d1 = (p1[1] - p0[1], p1[2] - p0[2])
+                    d2 = (p2[1] - p1[1], p2[2] - p1[2])
+                    collinear = d1[0] * d2[1] - d1[1] * d2[0] == 0
+                    if not collinear or p1[1:] in keep:
+                        pts.append(p1)
+                if len(run) > 1:
+                    pts.append(run[-1])
+                xy = [self.xy(p[1], p[2]) for p in pts]
+                # stubs into exact pad centres
+                if run[0] in pad_center and run is runs[0]:
+                    xy.insert(0, pad_center[run[0]])
+                if run[-1] in pad_center and run is runs[-1]:
+                    xy.append(pad_center[run[-1]])
+                for a, b in zip(xy, xy[1:]):
+                    if a != b:
+                        tracks.append((L, a, b, width, net))
+        for L, a, b, w, n in tracks:
+            self.add_track(L, a, b, w, n)
+        for p, n in vias:
+            self.add_via(p, n)
+        return True, tracks, vias
