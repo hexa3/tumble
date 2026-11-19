@@ -1,2 +1,8 @@
 firmware/.pio/
+firmware/test/host/test_host
 **/__pycache__/
+hardware/*/*.kicad_prl
+hardware/*/fp-info-cache
+hardware/*/*-backups/
+hardware/*/~*.lck
+hardware/fab/*/gerbers/
