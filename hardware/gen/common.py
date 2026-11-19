@@ -6,7 +6,7 @@ import math
 
 from kicadgen import Part
 
-HALF = 22.5            # 45 x 45 mm
+HALF = 25.0            # 50 x 50 mm: room below the LED field for the matrix driver
 RADIUS = 5.0           # corner radius
 HOLE = 21.0            # M2 mounting holes on a 42 mm square
 KEYLINE = 0.8          # copper keyilne inset from the edge
