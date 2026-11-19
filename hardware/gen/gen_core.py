@@ -102,3 +102,135 @@ def parts():
     P += [TP(f"TP{i + 1}", n) for i, n in enumerate(tps)]
     P += K.pins(K.LINK_AB, "P") + K.lands(K.LINK_BC, "X") + K.holes()
     return P
+
+
+# (x, y, rot) on the top side, seen from above, in placement order.  autoplace() keeps each part
+# here if its courtyard is clear, otherwise moves it to the nearest clear spot.
+#   MCU west of centre, square to the board; decoupling on the west side by its supply pins.
+#   Accelerometer east of centre, away from the LRA and the standoffs.
+#   Haptics in the south-east: LRA body glued in the circle drawn on the silkscreen, driver beside its pads.
+#   Entropy chain in the south-west, flowing west -> east: boost, filter, junction, amplifier, ADC.
+LRA_C, LRA_R = (11.5, 5.0), 4.1          # body: 8 mm coin
+PLACE = {
+    "U1": (-4.0, -4.0, 0), "C6": (-9.8, -4.0, 90), "C8": (-11.0, -4.0, 90), "C9": (-4.0, -8.6, 0),
+    "R9": (1.6, 0.6, 90), "R10": (2.0, -7.4, 90), "R11": (3.2, -7.4, 90), "R12": (4.4, -7.4, 90), "R13": (11.2, -1.4, 0),
+    "U2": (7.5, -4.0, 0), "C12": (10.0, -8.6, 90), "C13": (11.2, -8.6, 90),
+    "M1": (11.5, 11.6, 0), "U3": (11.5, 15.4, 0), "C14": (7.6, 19.2, 90), "C15": (17.0, 18.0, 90),
+    "C2": (-15.6, 9.0, 90), "U4": (-12.4, 9.0, 0), "R8": (-9.6, 7.0, 0),
+    "C1": (-9.4, 9.4, 90), "R2": (-8.2, 9.4, 90), "R1": (-9.0, 11.6, 0),
+    "L1": (-14.4, 13.4, 90), "D1": (-11.0, 14.4, 0), "C3": (-8.4, 14.4, 90),
+    "R3": (-7.0, 14.4, 90), "C4": (-5.6, 14.4, 90), "R4": (-4.0, 15.8, 0),
+    "Q1": (-1.6, 16.0, 0), "C5": (0.4, 14.0, 90), "Q2": (2.6, 14.0, 0),
+    "R5": (2.6, 11.4, 0), "R6": (4.6, 12.0, 90), "R7": (4.6, 15.4, 90),
+}
+BACK = {"J1": (0.0, -13.0, 0)}
+TP_ROW = [(x, 19.0) for x in (-7.2, -4.8, -2.4, 0.0, 2.4, 4.8, 7.2)]
+
+
+def build(first=()):
+    proj = "core"
+    out = os.path.join(HW, proj)
+    P = parts()
+    nl = write_schematic(
+        proj, "TinyDie Tumble - B CORE", P, out, paper="A2",
+        notes=["Board B, CORE: STM32G041J6 (SO-8) + LIS3DH + DRV2605L/LRA + avalanche-noise entropy source",
+               "P1-P10 spring pins up to the FACE; X1-X10 gold dots for the BASE's spring pins; TP* gold test pads",
+               "MCU pins 7/8 are SWD for 2 s after reset, then NOISE_EN / ACC_INT1.  Set NRST_MODE = GPIO (pin 4 = UART).",
+               "Entropy: TPS61040 boosts VBAT to ~13.6 V only while NOISE_EN is high; Q1 E-B junction in avalanche, Q2 amplifies"],
+        flags=["GND", "VBAT", "3V3"])
+    pb = PcbBuilder(proj, out, nl, origin=(100.0, 100.0))
+    K.outline(pb)
+    K.keyline(pb, "FB")
+    K.place_common(pb, land_refs="X", pin_refs="P")
+    for ref, (x, y, r) in BACK.items():
+        pb.place(ref, x, y, r, back=True)
+    for i, (x, y) in enumerate(TP_ROW):
+        pb.place(f"TP{i + 1}", x, y, back=True)
+    K.board_label(pb, "B · CORE  2/3", "F")
+    K.gold_text(pb, "ENTROPY", -7.6, 5.4, side="F", size=0.8)
+    fixed = [r for r in pb.fps if r[0] in "PXH" or r in BACK or r.startswith("TP")]
+    lra = ("F", LRA_C[0] - LRA_R, LRA_C[1] - LRA_R, LRA_C[0] + LRA_R, LRA_C[1] + LRA_R)
+    K.autoplace(pb, PLACE, fixed=fixed, reserve=[lra])
+    pb.silk_circle(LRA_C[0], LRA_C[1], LRA_R, w=0.15)
+    pb.text("LRA", LRA_C[0], LRA_C[1], size=1.0)
+    # gold fence around the entropy block, open on the east side where its three signals leave
+    ent = ["U4", "L1", "D1", "C1", "C2", "C3", "C4", "C5", "R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "Q1", "Q2"]
+    bx = [K.courtyard(pb, r) for r in ent]
+    x1, y1 = min(b[0] for b in bx) - 0.6, min(b[1] for b in bx) - 0.6
+    x2, y2 = max(b[2] for b in bx) + 0.6, max(b[3] for b in bx) + 0.6
+    gate = (y1 + 1.0, y1 + 5.0)
+    for a, b in [((x1, y1), (x2, y1)), ((x1, y1), (x1, y2)), ((x1, y2), (x2, y2)),
+                 ((x2, y1), (x2, gate[0])), ((x2, gate[1]), (x2, y2))]:
+        pb.silk_line(a, b, w=0.2)                                 # ink, not copper: no mask openings
+
+    from router import Router
+    ox, oy = pb.ox, pb.oy
+    failed = []
+    jx, jy = BACK["J1"][:2]                       # Tag-Connect keep-out: no vias between its pads
+    pb.via_keepouts = [(jx - 1.62, jy - 0.985, jx + 1.62, jy + 0.985)]
+    stub_ends, stubbed = K.escape_stubs(pb, ["U1", "U2", "U3"], gnd_vias=True)
+    # boost input cap: its ground pad gets its own via, outward from the cap
+    (ax, ay), (bx, by) = pb.pad_xy("C2", "1"), pb.pad_xy("C2", "2")
+    gx, gy = (bx, by) if pb.netlist["C2"]["pads"]["2"] == "GND" else (ax, ay)
+    ox_, oy_ = (ax, ay) if (gx, gy) == (bx, by) else (bx, by)
+    d = ((gx - ox_) ** 2 + (gy - oy_) ** 2) ** 0.5
+    vg = (gx + (gx - ox_) / d * 0.95, gy + (gy - oy_) / d * 0.95)
+    pb.track((gx, gy), vg, 0.3, "GND", "F")
+    pb.via(*vg, "GND")      # fine-pitch parts: stubs to route to
+    rt = K.make_router(pb, Router, maxw=0.25, clearance=0.16, layer_cost={"F": 0.0, "B": 0.3})
+
+    nets = [("LRA_P", 0.25), ("LRA_N", 0.25), ("HAPT_REG", 0.2), ("SDA", 0.2), ("SCL", 0.2),
+            ("3V3", 0.25), ("VBAT", 0.25),
+            ("VBOOST", 0.25), ("BST_SW", 0.25), ("BST_FB", 0.2), ("VNOISE", 0.2), ("AVAL", 0.2),
+            ("AMP_B", 0.2), ("AMP_C", 0.2), ("NOISE_ADC", 0.2), ("SWDIO", 0.2), ("SWCLK", 0.2),
+            ("ACC_INT1", 0.2), ("ACC_SA0", 0.2), ("UART", 0.2), ("LED_SDB", 0.2), ("LED_INTB", 0.2)]
+    nets = [n for n in nets if n[0] in first] + [n for n in nets if n[0] not in first]
+    if os.environ.get("CORE_ONLY"):
+        nets = [n for n in nets if n[0] in os.environ["CORE_ONLY"].split(",")]
+    for net, w in nets:
+        pads = [pd for fp in pb.fps.values() for pd in fp.Pads() if pd.GetNetname() == "/" + net
+                and (fp.GetReference(), pd.GetNumber()) not in stubbed]
+        if os.environ.get("CORE_DEBUG"):
+            for pd in pads:
+                cells, _ = rt.pad_cells(pd)
+                nf = sum(1 for c in cells if rt.free(c[0], c[1:], "/" + net))
+                print(f"    {net} pad {pd.GetParentFootprint().GetReference()}.{pd.GetNumber()} cells {len(cells)} free {nf}")
+            for e in stub_ends.get("/" + net, []):
+                c = rt.ij(*e)
+                print(f"    {net} stub end {e} free F {rt.free('F', c, '/' + net)} blockers {rt.tblock['F'].get(c)}")
+        ok, tr, vs = rt.route_net("/" + net, pads, w, extra=stub_ends.get("/" + net))
+        print(f"  route {net:10s} {'ok' if ok else 'FAILED'} {len(tr):3d} segs {len(vs)} vias")
+        if not ok:
+            failed.append(net)
+            continue
+        for L, a, b, ww, n in tr:
+            pb.track((a[0] - ox, a[1] - oy), (b[0] - ox, b[1] - oy), ww, net, L)
+        for (x, y), n in vs:
+            pb.via(x - ox, y - oy, net)
+
+    print("  ground (vias, links, failed):", K.ground(pb, K.make_router(pb, Router, maxw=0.25, clearance=0.16), skip=stubbed))
+    print(f"  stitching vias: {K.stitch(pb, K.make_router(pb, Router, maxw=0.3), step=3.0)}")
+    h = K.HALF - K.KEYLINE - 0.45
+    for L in ("F", "B"):
+        pb.zone("GND", L, [(-h, -h), (h, -h), (h, h), (-h, h)], clearance=0.2, min_w=0.2)
+    # marks
+    labels = ["NOISE", "UART", "INTB", "SWDIO", "SWCLK", "3V3", "GND"]
+    for k, ((x, y), t) in enumerate(zip(TP_ROW, labels)):
+        pb.text(t, x, y + (-1.6 if k % 2 == 0 else 1.6), layer="B.SilkS", size=0.6)
+    pb.text("SWD", 0.0, -14.6, layer="B.SilkS", size=0.8)
+    out_pcb = pb.finish(clearance=0.16, track=0.2)
+    if failed:
+        print("UNROUTED:", failed)
+    return out_pcb, failed
+
+
+if __name__ == "__main__":
+    first = []
+    for attempt in range(1, 6):
+        pcb, failed = build(first)
+        print(f"attempt {attempt}: {len(failed)} unrouted {failed}")
+        if not failed:
+            break
+        first = failed + [f for f in first if f not in failed]
+    print(pcb)
+    sys.exit(1 if failed else 0)
