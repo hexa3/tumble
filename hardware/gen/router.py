@@ -125,7 +125,7 @@ class Router:
         self._mark([layer], bb, lambda px, py: max(self._dist_seg(px, py, a, b) - w / 2, 0.0), net)
 
     def add_via(self, p, net, drill=0.3):
-        lim = drill / 2 + 0.3 / 2 + 0.25          # hole-to-hole, any net
+        lim = drill / 2 + 0.3 / 2 + 0.27          # hole-to-hole, any net
         ci, cj = self.ij(*p)
         k = int(lim / self.g) + 1
         for i in range(ci - k, ci + k + 1):
