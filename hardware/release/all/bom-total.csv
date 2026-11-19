@@ -1,0 +1,36 @@
+Qty,Manufacturer,MPN,DigiKey PN,DigiKey unit $,LCSC #,LCSC alt MPN,LCSC unit $,Buy from,Line $,Checked,Note
+20,Mill-Max,0900-2-15-20-75-14-11-0,ED9002-ND,0.7150,,,,DigiKey,14.30,cube,"49,077 in stock"
+1,TBD,"TBD (1S Li-Po with protection, <= 34 x 25 x 3.5 mm)",,7.0000,,,,DigiKey,7.00,verify,NOT SELECTED: the 4.3 mm board gap needs a cell 3.5 mm thick or less
+1,Vybronics,VG0832022D,1670-VG0832022D-ND,3.4700,,,,DigiKey,3.47,page,"15,639 in stock. Thickness and lead style not confirmed"
+1,Microchip Technology,MCP2221A-I/SL,MCP2221A-I/SL-ND,2.5300,C640876,,4.5099,DigiKey,2.53,page,live 2026-11-11; dearer than DigiKey
+1,STMicroelectronics,STM32G041J6M6,497-STM32G041J6M6-ND,1.9800,C724068,,2.022,DigiKey,1.98,page,live 2026-11-11; only 3 in stock
+1,Analog Devices / Maxim,MAX17048G+T10,,4.6100,C2682616,,1.9599,LCSC,1.96,page,live 2026-11-11
+1,STMicroelectronics,LIS3DHTR,497-10613-1-ND,1.9400,C15134,,1.8063,LCSC,1.81,cube,live 2026-11-11
+121,Kingbright,APHHS1005SYCK,754-1105-1-ND,0.1366,C25503856,XINGLIGHT XL-1005UYC,0.0132,LCSC,1.60,page,"live 2026-11-11, 175,965 in stock"
+1,Lumissil Microsystems,IS31FL3733B-QFLS4-TR,,2.5900,C506251,ISSI IS31FL3733-QFLS4-TR (B version out of stock),1.4516,LCSC,1.45,page,live 2026-11-11
+1,Texas Instruments,DRV2605LDGSR,,2.2800,C527464,,1.2309,LCSC,1.23,verify,live 2026-11-11
+1,Texas Instruments,TPS61040DBVR,,1.2900,C7722,,0.8598,LCSC,0.86,verify,live 2026-11-11
+1,GCT,USB4105-GF-A,2073-USB4105-GF-ACT-ND,0.8000,C3020560,,1.02,DigiKey,0.80,cube,live 2026-11-11
+1,Microchip Technology,MCP73831T-2ACI/OT,MCP73831T-2ACI/OTCT-ND,0.7600,C424093,,0.7978,DigiKey,0.76,cube,live 2026-11-11
+1,Murata,LQH32PH100MN0L,,0.4500,C907910,,0.2058,LCSC,0.21,verify,live 2026-11-11
+1,STMicroelectronics,USBLC6-2SC6,497-5235-1-ND,0.5400,C7519,,0.1572,LCSC,0.16,cube,live 2026-11-11
+1,Richtek,RT9080-33GJ5,1028-1509-1-ND,0.2800,C841192,,0.1208,LCSC,0.12,cube,live 2026-11-11
+1,Alpha & Omega Semiconductor,AO3401A,785-1001-1-ND,0.5200,C15127,,0.0821,LCSC,0.08,cube,"live 2026-11-11, basic"
+11,Samsung Electro-Mechanics,CL05A105KA5NQNC,1276-1445-1-ND,0.1090,,"generic, JLC basic part",0.005,LCSC,0.06,cube,est
+7,Samsung Electro-Mechanics,CL05B104KO5NNNC,1276-1001-1-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.04,cube,est
+7,YAGEO,RC0402FR-0710KL,311-10.0KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.04,cube,est
+6,YAGEO,RC0402FR-07100KL,311-100KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.03,cube,est
+1,Diodes Incorporated,1N5819HW-7-F,1N5819HW-FDICT-ND,0.3100,C8598,JSCJ B5819W SL,0.0265,LCSC,0.03,cube,"live 2026-11-11, basic"
+2,onsemi,MMBT3904LT1G,,0.1500,C20526,JSCJ MMBT3904,0.0104,LCSC,0.02,verify,"live 2026-11-11, basic"
+4,Taiyo Yuden,LMK107BBJ106MALT,587-3258-1-ND,0.1500,,"generic, JLC basic part",0.005,LCSC,0.02,cube,est
+1,onsemi,2N7002LT1G,2N7002LT1GOSCT-ND,0.2600,C8545,JSCJ 2N7002,0.0155,LCSC,0.02,cube,"live 2026-11-11, basic"
+3,TDK,C1005X5R1A475K050BC,445-13820-1-ND,0.2500,,"generic, JLC basic part",0.005,LCSC,0.01,cube,est
+3,YAGEO,RC0402FR-071KL,311-1.00KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,verify,est
+2,YAGEO,RC0402FR-071ML,311-1.00MLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,verify,est
+2,YAGEO,RC0402FR-074K7L,311-4.70KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,cube,est
+2,YAGEO,RC0402FR-075K1L,311-5.10KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,verify,est
+1,Lite-On,LTST-C191KRKT,160-1447-1-ND,0.1500,C2286,KENTO KT-0603R,0.0077,LCSC,0.01,cube,"live 2026-11-11, basic"
+1,YAGEO,RC0402FR-0720KL,311-20.0KLRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,cube,est
+1,Samsung Electro-Mechanics,CL05C100JB5NNNC,,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,verify,est
+1,YAGEO,RC0402FR-07100RL,311-100LRCT-ND,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,cube,est
+1,Samsung Electro-Mechanics,CL05A474KO5NNNC,,0.1000,,"generic, JLC basic part",0.005,LCSC,0.01,verify,est

@@ -1,0 +1,21 @@
+Qty,References,Value,Manufacturer,MPN,DigiKey PN,Checked,Description
+1,Q2,2N7002,onsemi,2N7002LT1G,2N7002LT1GOSCT-ND,cube,"N-MOSFET 60 V 115 mA, SOT-23"
+1,Q1,AO3401A,Alpha & Omega Semiconductor,AO3401A,785-1001-1-ND,cube,"P-MOSFET -30 V -4 A, SOT-23"
+3,C6 C7 C9,100nF,Samsung Electro-Mechanics,CL05B104KO5NNNC,1276-1001-1-ND,cube,100 nF 16 V X7R 0402
+1,C5,10uF,Taiyo Yuden,LMK107BBJ106MALT,587-3258-1-ND,cube,10 uF 10 V X5R 0603
+2,C3 C4,1uF,Samsung Electro-Mechanics,CL05A105KA5NQNC,1276-1445-1-ND,cube,1 uF 25 V X5R 0402
+1,C8,470nF,Samsung Electro-Mechanics,CL05A474KO5NNNC,,verify,470 nF 16 V X5R 0402
+2,C1 C2,4.7uF,TDK,C1005X5R1A475K050BC,445-13820-1-ND,cube,4.7 uF 10 V X5R 0402
+1,D2,RED,Lite-On,LTST-C191KRKT,160-1447-1-ND,cube,red LED 0603 (charge indicator)
+1,BT1,Li-Po 1S,TBD,"TBD (1S Li-Po with protection, <= 34 x 25 x 3.5 mm)",,verify,"1S Li-Po, 150-250 mAh, protection PCB, leads soldered to BT1"
+1,U5,MAX17048,Analog Devices / Maxim,MAX17048G+T10,,page,"1-cell Li+ fuel gauge (ModelGauge), I2C, TDFN-8 2x2"
+1,U4,MCP2221A,Microchip Technology,MCP2221A-I/SL,MCP2221A-I/SL-ND,page,"USB 2.0 to UART/I2C bridge, crystal-less, SOIC-14"
+1,U2,MCP73831-2,Microchip Technology,MCP73831T-2ACI/OT,MCP73831T-2ACI/OTCT-ND,cube,"Li-Po charger, 4.20 V, SOT-23-5"
+10,P1 P10 P2 P3 P4 P5 P6 P7 P8 P9,VBAT,Mill-Max,0900-2-15-20-75-14-11-0,ED9002-ND,cube,"SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+2,R11 R9,100k,YAGEO,RC0402FR-07100KL,311-100KLRCT-ND,cube,100 k 1 % 0402
+3,R10 R3 R8,10k,YAGEO,RC0402FR-0710KL,311-10.0KLRCT-ND,cube,10 k 1 % 0402
+2,R6 R7,1k,YAGEO,RC0402FR-071KL,311-1.00KLRCT-ND,verify,1 k 1 % 0402
+2,R1 R2,5.1k,YAGEO,RC0402FR-075K1L,311-5.10KLRCT-ND,verify,5.1 k 1 % 0402
+1,U3,RT9080-33GJ5,Richtek,RT9080-33GJ5,1028-1509-1-ND,cube,"3.3 V 600 mA LDO, 2 uA Iq, SOT-23-5"
+1,J1,USB-C,GCT,USB4105-GF-A,2073-USB4105-GF-ACT-ND,cube,"USB-C receptacle, USB 2.0, 16 pin, SMD horizontal"
+1,U1,USBLC6-2SC6,STMicroelectronics,USBLC6-2SC6,497-5235-1-ND,cube,"USB ESD protection, SOT-23-6"

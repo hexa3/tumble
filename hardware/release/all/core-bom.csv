@@ -1,0 +1,21 @@
+Qty,References,Value,Manufacturer,MPN,DigiKey PN,Checked,Description
+3,C13 C5 C6,100nF,Samsung Electro-Mechanics,CL05B104KO5NNNC,1276-1001-1-ND,cube,100 nF 16 V X7R 0402
+1,C1,10pF,Samsung Electro-Mechanics,CL05C100JB5NNNC,,verify,10 pF 50 V C0G 0402
+1,C9,10uF,Taiyo Yuden,LMK107BBJ106MALT,587-3258-1-ND,cube,10 uF 10 V X5R 0603
+6,C12 C14 C15 C3 C4 C8,1uF,Samsung Electro-Mechanics,CL05A105KA5NQNC,1276-1445-1-ND,cube,1 uF 25 V X5R 0402
+1,C2,4.7uF,TDK,C1005X5R1A475K050BC,445-13820-1-ND,cube,4.7 uF 10 V X5R 0402
+1,U3,DRV2605L,Texas Instruments,DRV2605LDGSR,,verify,"haptic driver for LRA/ERM, I2C, VSSOP-10"
+1,L1,10uH,Murata,LQH32PH100MN0L,,verify,"inductor 10 uH, 1210 (3.2x2.5 mm), Isat >= 0.5 A"
+1,U2,LIS3DH,STMicroelectronics,LIS3DHTR,497-10613-1-ND,cube,"3-axis accelerometer, I2C, click + motion interrupts, LGA-16 3x3"
+1,M1,LRA,Vybronics,VG0832022D,1670-VG0832022D-ND,page,"linear resonant actuator, 8 mm coin, 235 Hz, 1.8 Vac"
+2,Q1 Q2,MMBT3904,onsemi,MMBT3904LT1G,,verify,"NPN 40 V 200 mA, SOT-23"
+10,P1 P10 P2 P3 P4 P5 P6 P7 P8 P9,LED_SDB,Mill-Max,0900-2-15-20-75-14-11-0,ED9002-ND,cube,"SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+1,R7,100Ω,YAGEO,RC0402FR-07100RL,311-100LRCT-ND,cube,100 R 1 % 0402
+3,R2 R4 R8,100k,YAGEO,RC0402FR-07100KL,311-100KLRCT-ND,cube,100 k 1 % 0402
+4,R12 R13 R3 R6,10k,YAGEO,RC0402FR-0710KL,311-10.0KLRCT-ND,cube,10 k 1 % 0402
+2,R1 R5,1M,YAGEO,RC0402FR-071ML,311-1.00MLRCT-ND,verify,1 M 1 % 0402
+1,R9,1k,YAGEO,RC0402FR-071KL,311-1.00KLRCT-ND,verify,1 k 1 % 0402
+2,R10 R11,4.7k,YAGEO,RC0402FR-074K7L,311-4.70KLRCT-ND,cube,4.7 k 1 % 0402
+1,D1,1N5819HW,Diodes Incorporated,1N5819HW-7-F,1N5819HW-FDICT-ND,cube,"Schottky 40 V 1 A, SOD-123"
+1,U1,STM32G041J6M6,STMicroelectronics,STM32G041J6M6,497-STM32G041J6M6-ND,page,"MCU Cortex-M0+ 64 MHz, 32 KB flash, 8 KB RAM, hardware RNG + AES, SO-8"
+1,U4,TPS61040,Texas Instruments,TPS61040DBVR,,verify,"boost converter, 400 mA switch, up to 28 V out, SOT-23-5"
