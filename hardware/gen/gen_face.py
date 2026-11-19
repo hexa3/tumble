@@ -30,7 +30,7 @@ import common as K  # noqa: E402
 from kicadgen import HW, Part, PcbBuilder, write_schematic  # noqa: E402
 
 N = 11
-PITCH = 2.54
+PITCH = 2.4
 PADX = 0.485            # LED pad centres are +-0.485 mm from the LED centre (pad 1 = K west, 2 = A east)
 DY = 0.85               # row trace this far above the LED, column via this far below
 W = 0.2                 # matrix track width
