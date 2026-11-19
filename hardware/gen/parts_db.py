@@ -1,6 +1,7 @@
 """Purchasable parts for the three TinyDie Tumble boards: one entry per orderable part.
 
-Each schematic symbol gets Manufacturer / MPN / DigiKey_PN fields from here (kicadgen.part_fields).
+Each schematic symbol gets Manufacturer / MPN / DigiKey_PN fields from here (kicadgen.part_fields)
+and fab.py prices the build from `breaks`.
 
 Prices are DigiKey cut-tape unit prices in USD.  `checked` says how far each entry was verified:
   "page"    price and stock read from the DigiKey product page on 2026-11-10
