@@ -163,3 +163,62 @@ def cheapest(key, qty):
     if key in LCSC and LCSC[key][2] < dk:
         return "LCSC", LCSC[key][2]
     return "DigiKey", dk
+
+
+# JLCPCB assembly (PCBA) part choices, looked up live on JLCPCB's parts API on 2026-11-11
+# (gen/jlc_stock.py re-checks stock and price; run it right before ordering).
+# "basic" parts carry no feeder fee; every unique "extended" part costs about $3 per order.
+# key: (LCSC part #, part JLCPCB places, basic/extended, note).  Keys missing here are hand-soldered.
+JLC = {
+    # face
+    "LED": ("C25503856", "XINGLIGHT XL-1005UYC", "extended",
+            "yellow 0402, 210 mcd, Vf 2.4 V (Kingbright APHHS1005SYCK is C5875733 at ~13x the price). Check polarity in JLC preview"),
+    "IS31FL3733B": ("C506251", "ISSI IS31FL3733-QFLS4-TR", "extended",
+                    "the B version had 0 stock; the original IS31FL3733 is the same QFN-48 6x6. Verify pinout + registers vs our use (firmware only writes CONFIG 0x00/0x01, GCC, pull-up/down)"),
+    # core
+    "STM32G041": ("C724068", "ST STM32G041J6M6", "extended", "ONLY 3 IN STOCK on 2026-11-11: if gone, leave U1 off and hand-solder the SO-8"),
+    "LIS3DH": ("C15134", "ST LIS3DHTR", "extended", ""),
+    "DRV2605L": ("C527464", "TI DRV2605LDGSR", "extended", ""),
+    "TPS61040": ("C7722", "TI TPS61040DBVR", "extended", ""),
+    "L10u": ("C907910", "Murata LQH32PH100MN0L", "extended", "same MPN; 700 mA rated (switch limit 400 mA)"),
+    "MMBT3904": ("C20526", "JSCJ MMBT3904", "basic", "different maker from onsemi: avalanche voltage and noise must be re-measured at bring-up"),
+    "SCHOTTKY": ("C8598", "JSCJ B5819W SL", "basic", "SOD-123 1N5819 equivalent"),
+    # base
+    "MCP2221A": ("C640876", "", 4.5099, "live 2026-11-11; dearer than DigiKey"),
+    "MAX17048": ("C2682616", "Maxim MAX17048G+T10", "extended", ""),
+    "MCP73831": ("C424093", "Microchip MCP73831T-2ACI/OT", "extended", ""),
+    "RT9080": ("C841192", "Richtek RT9080-33GJ5", "extended", ""),
+    "USBLC6": ("C7519", "ST USBLC6-2SC6", "extended", ""),
+    "USBC": ("C3020560", "GCT USB4105-GF-A", "extended", "same MPN"),
+    "AO3401A": ("C15127", "AOS AO3401A", "basic", ""),
+    "2N7002": ("C8545", "JSCJ 2N7002", "basic", ""),
+    "LED_RED_0603": ("C2286", "KENTO KT-0603R", "basic", ""),
+    # passives (all basic)
+    "C100n_0402": ("C1525", "Samsung CL05B104KO5NNNC", "basic", "same MPN"),
+    "C1u_0402": ("C52923", "Samsung CL05A105KA5NQNC", "basic", "same MPN"),
+    "C4u7_0402": ("C23733", "Samsung CL05A475MP5NRNC", "basic", "10 V X5R"),
+    "C10u_0603": ("C19702", "Samsung CL10A106KP8NNNC", "basic", "10 V X5R"),
+    "C10p_0402": ("C32949", "Samsung CL05C100JB5NNNC", "basic", "same MPN"),
+    "C470n_0402": ("C47339", "Samsung CL05A474KP5NNNC", "extended", "10 V X5R"),
+    "R100_0402": ("C25076", "UNI-ROYAL 0402WGF1000TCE", "basic", ""),
+    "R1k_0402": ("C11702", "UNI-ROYAL 0402WGF1001TCE", "basic", ""),
+    "R4k7_0402": ("C25900", "UNI-ROYAL 0402WGF4701TCE", "basic", ""),
+    "R5k1_0402": ("C25905", "UNI-ROYAL 0402WGF5101TCE", "basic", ""),
+    "R10k_0402": ("C25744", "UNI-ROYAL 0402WGF1002TCE", "basic", ""),
+    "R20k_0402": ("C25765", "UNI-ROYAL 0402WGF2002TCE", "basic", "sets LED current: 1 %"),
+    "R100k_0402": ("C25741", "UNI-ROYAL 0402WGF1003TCE", "basic", ""),
+    "R1M_0402": ("C26083", "UNI-ROYAL 0402WGF1004TCE", "basic", ""),
+}
+
+# Not machine-placed: you solder these after the boards arrive.
+HAND = {
+    "POGO": "Mill-Max spring pins from DigiKey: their height sets the board gap, so no substitute",
+    "LRA": "Vybronics actuator from DigiKey: not stocked by JLCPCB; two wire pads",
+    "LIPO": "battery: two wire pads",
+}
+
+# Rotation JLCPCB's placement expects minus KiCad's, by footprint name prefix.  These are the
+# corrections commonly used by KiCad-to-JLCPCB tools; confirm each in JLCPCB's placement preview.
+JLC_ROT = [
+    ("SOT-23", 180), ("SOIC-", 270), ("QFN-", 270), ("DFN-", 270), ("MSOP-", 270), ("LGA-", 270),
+]
