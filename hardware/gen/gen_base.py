@@ -102,3 +102,108 @@ PLACE = {
     "C5": (12.8, -18.6, 90), "U5": (-7.0, -18.6, 0), "C9": (-9.6, -18.6, 90),
 }
 DOTS = [(-8.0, -8.0), (8.0, -8.0), (-8.0, 0.0), (8.0, 0.0), (-8.0, 8.0), (8.0, 8.0)]   # the "6" face
+
+
+def build(first=()):
+    proj = "base"
+    out = os.path.join(HW, proj)
+    P = parts()
+    nl = write_schematic(
+        proj, "TinyDie Tumble - C BASE", P, out, paper="A3",
+        notes=["Board C, BASE: USB-C -> USBLC6 -> MCP73831 (100 mA) -> Li-Po; RT9080 3.3 V LDO; MCP2221A bridge; MAX17048 gauge",
+               "P1-P10 spring pins up to the CORE.  TP1-TP6 gold caseback pads, arranged as the six face (SWD jig).",
+               "CC1/CC2 5.1k: USB 2.0 sink, 5 V only.  No power path: the system runs from the cell while charging."],
+        flags=["GND", "VBUS", "3V3_USB"])
+    pb = PcbBuilder(proj, out, nl, origin=(100.0, 100.0))
+    K.outline(pb)
+    K.keyline(pb, "FB")
+    K.place_common(pb, pin_refs="P")
+    pb.place("J1", 0.0, K.HALF - USB_EDGE, 0)
+    for i, (x, y) in enumerate(DOTS):
+        pb.place(f"TP{i + 1}", x, y, back=True)
+    pb.place("C2", 0.0, -16.0, 0)                                      # battery decoupling, see below
+    fixed = [r for r in pb.fps if r[0] in "PH" or r == "J1" or r.startswith("TP") or r == "C2"]
+    K.autoplace(pb, PLACE, fixed=fixed, reserve=[("F",) + BAY])
+    # battery decoupling: straight under the battery pads, wired to them directly
+    for n in ("1", "2"):
+        net = pb.netlist["C2"]["pads"][n]
+        tgt = "1" if net == "VBAT" else "2"
+        pb.track(pb.pad_xy("C2", n), pb.pad_xy("BT1", tgt), 0.3, net, "F")
+    # fuel gauge: its ground pins tie inward to the exposed pad, which leaves through one stub to a via
+    ex, ey = pb.pad_xy("U5", "9")
+    for n in ("1", "4", "6"):
+        px, py = pb.pad_xy("U5", n)
+        pb.track((px, py), (ex + (0.25 if px > ex else -0.25), py), 0.25, "GND", "F")
+    pb.track((ex, ey), (ex, ey - 1.75), 0.3, "GND", "F")          # away from the caseback title
+    pb.via(ex, ey - 1.75, "GND")
+    # the battery bay, drawn on the top silkscreen
+    x1, y1, x2, y2 = BAY
+    for a, b in [((x1, y1), (x2, y1)), ((x2, y1), (x2, y2)), ((x2, y2), (x1, y2)), ((x1, y2), (x1, y1))]:
+        pb.silk_line(a, b, w=0.15)
+    pb.text("Li-Po 1S  <= 34 x 25 x 3.5 mm", 0.0, (y1 + y2) / 2, size=1.0)
+
+    # ---------------------------------------------------- caseback art (bottom, read from below)
+    K.gold_text(pb, "TINYDIE TUMBLE", 0.0, -17.6, side="B", size=1.8)
+    K.gold_text(pb, "REV A · 2026", 0.0, -14.7, side="B", size=0.9)
+    K.gold_text(pb, "OPPOSITE FACES SUM TO SEVEN", -17.5, 0.0, side="B", size=0.9, rot=90)
+    K.board_label(pb, "C · BASE  3/3", "B")
+    for (x, y), t in zip(DOTS, ["SWDIO", "SWCLK", "3V3", "GND", "VBAT", "VBUS"]):
+        pb.text(t, x, y + 2.6, layer="B.SilkS", size=0.7)
+    # Mk I: the ATtiny412's SOIC-8 land pattern in gold, with its name
+    mx, my = 15.0, 12.5
+    for k in range(4):
+        for sgn in (-1, 1):
+            cx, cy = mx + sgn * 2.7, my - 1.905 + k * 1.27
+            K.gold_rect(pb, cx - 0.775, cy - 0.3, cx + 0.775, cy + 0.3, side="B")
+    K.art(pb, "B", mx - 3.5, my - 2.3, mx + 3.5, my + 2.3)
+    K.gold_text(pb, "MK I", mx, my + 4.0, side="B", size=0.8)
+    pb.text("ATtiny412", mx, my - 4.0, layer="B.SilkS", size=0.6)
+
+    from router import Router
+    ox, oy = pb.ox, pb.oy
+    failed = []
+    sig = [("USB_DP", 0.2), ("USB_DM", 0.2), ("CC1", 0.2), ("CC2", 0.2), ("PROG", 0.2),
+           ("CHG_STAT", 0.2), ("LED_A", 0.2), ("UART", 0.2), ("BR_TX", 0.2), ("BR_RST", 0.2),
+           ("BR_PG", 0.2), ("BR_G", 0.2), ("SDA", 0.2), ("SCL", 0.2), ("SWDIO", 0.2), ("SWCLK", 0.2)]
+    pwr = [("3V3_USB", 0.3), ("VBUS", 0.3), ("VBAT", 0.3), ("3V3", 0.3)]
+    sig = [n for n in sig if n[0] in first] + [n for n in sig if n[0] not in first]
+    stub_ends, stubbed = K.escape_stubs(pb, ["U5"])                  # 0.5 mm DFN: stubs to route to
+    for group, maxw in ((sig, 0.2), (pwr, 0.3)):
+        # USB-C pads sit on x = 0.25 + n * 0.5: shift the 0.1 mm grid by 0.05 so they land on it
+        rt = K.make_router(pb, Router, maxw=maxw, clearance=0.16, layer_cost={"F": 0.0, "B": 0.6},
+                           shift=(-0.05, 0.0))
+        for net, w in group:
+            pads = [pd for fp in pb.fps.values() for pd in fp.Pads() if pd.GetNetname() == "/" + net
+                    and (fp.GetReference(), pd.GetNumber()) not in stubbed]
+            ok, tr, vs = rt.route_net("/" + net, pads, w, extra=stub_ends.get("/" + net))
+            print(f"  route {net:9s} {'ok' if ok else 'FAILED'} {len(tr):3d} segs {len(vs)} vias")
+            if not ok:
+                failed.append(net)
+                continue
+            for L, a, b, ww, n in tr:
+                pb.track((a[0] - ox, a[1] - oy), (b[0] - ox, b[1] - oy), ww, net, L)
+            for (x, y), n in vs:
+                pb.via(x - ox, y - oy, net)
+
+    print("  ground (vias, links, failed):", K.ground(pb, K.make_router(pb, Router, maxw=0.25)))
+    print(f"  stitching vias: {K.stitch(pb, K.make_router(pb, Router, maxw=0.3), step=4.5)}")
+    h = K.HALF - K.KEYLINE - 0.45
+    for L in ("F", "B"):
+        pb.zone("GND", L, [(-h, -h), (h, -h), (h, h), (-h, h)], clearance=0.25, min_w=0.2)
+
+    out_pcb = pb.finish(clearance=0.16, track=0.2)
+    if failed:
+        print("UNROUTED:", failed)
+    return out_pcb, failed
+
+
+if __name__ == "__main__":
+    first = []
+    for attempt in range(1, 5):
+        pcb, failed = build(first)
+        print(f"attempt {attempt}: {len(failed)} unrouted {failed}")
+        if not failed:
+            break
+        first = failed + [f for f in first if f not in failed]
+    print(pcb)
+    sys.exit(1 if failed else 0)
