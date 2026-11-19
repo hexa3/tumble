@@ -153,6 +153,7 @@ LCSC = {
     "USBC": ("C3020560", "", 1.02, "live 2026-11-11"),
     "L10u": ("C907910", "", 0.2058, "live 2026-11-11"),
     "LED_RED_0603": ("C2286", "KENTO KT-0603R", 0.0077, "live 2026-11-11, basic"),
+    "MCP2221A": ("C640876", "", 4.5099, "live 2026-11-11; dearer than DigiKey"),
 }
 for _k in [k for k in PARTS if k.startswith(("R", "C")) and "_04" in k or k.endswith("_0603") and k[0] in "RC"]:
     LCSC.setdefault(_k, ("", "generic, JLC basic part", 0.005, "est"))
@@ -185,7 +186,7 @@ JLC = {
     "MMBT3904": ("C20526", "JSCJ MMBT3904", "basic", "different maker from onsemi: avalanche voltage and noise must be re-measured at bring-up"),
     "SCHOTTKY": ("C8598", "JSCJ B5819W SL", "basic", "SOD-123 1N5819 equivalent"),
     # base
-    "MCP2221A": ("C640876", "", 4.5099, "live 2026-11-11; dearer than DigiKey"),
+    "MCP2221A": ("C640876", "Microchip MCP2221A-I/SL", "extended", "same MPN; dearer than DigiKey ($4.51 vs $2.53)"),
     "MAX17048": ("C2682616", "Maxim MAX17048G+T10", "extended", ""),
     "MCP73831": ("C424093", "Microchip MCP73831T-2ACI/OT", "extended", ""),
     "RT9080": ("C841192", "Richtek RT9080-33GJ5", "extended", ""),
