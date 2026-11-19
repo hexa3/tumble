@@ -1,0 +1,50 @@
+(footprint "GoldDot_D1.5"
+	(version 20241229)
+	(generator "tinydie-tumble")
+	(generator_version "1.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c6ee3e5a-8c54-50ba-bff6-fd9b95094df9")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "GoldDot_D1.5"
+		(at 0 2 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dc3c4606-a6f8-5e8e-8b55-118b8778d230")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(descr "Bare ENIG test pad")
+	(attr smd exclude_from_pos_files exclude_from_bom)
+	(pad "1" smd circle
+		(at 0 0)
+		(size 1.5 1.5)
+		(layers "F.Cu" "F.Mask")
+		(uuid "2f5e1698-b678-5f33-bdcd-8b26fbd25ed7")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0.9 0)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "8ac99149-bf27-5e74-b884-bf2cacb678ae")
+	)
+	(embedded_fonts no)
+)

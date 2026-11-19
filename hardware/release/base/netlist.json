@@ -1,0 +1,926 @@
+{
+ "J1": {
+  "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+  "value": "USB-C",
+  "uuid": "bafed02d-e04f-4508-9969-e7894f50d408",
+  "pads": {
+   "A1": "GND",
+   "B1": "GND",
+   "A12": "GND",
+   "B12": "GND",
+   "A4": "VBUS",
+   "B4": "VBUS",
+   "A9": "VBUS",
+   "B9": "VBUS",
+   "A5": "CC1",
+   "B5": "CC2",
+   "A6": "USB_DP",
+   "B6": "USB_DP",
+   "A7": "USB_DM",
+   "B7": "USB_DM",
+   "SH": "GND"
+  },
+  "part": "USBC",
+  "fields": {
+   "Manufacturer": "GCT",
+   "MPN": "USB4105-GF-A",
+   "DigiKey_PN": "2073-USB4105-GF-ACT-ND",
+   "Description": "USB-C receptacle, USB 2.0, 16 pin, SMD horizontal"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {
+   "A8": "SBU1",
+   "B8": "SBU2"
+  }
+ },
+ "U1": {
+  "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+  "value": "USBLC6-2SC6",
+  "uuid": "fccc1e4f-9a63-4975-968b-946a9eff063b",
+  "pads": {
+   "1": "USB_DP",
+   "2": "GND",
+   "3": "USB_DM",
+   "4": "USB_DM",
+   "5": "VBUS",
+   "6": "USB_DP"
+  },
+  "part": "USBLC6",
+  "fields": {
+   "Manufacturer": "STMicroelectronics",
+   "MPN": "USBLC6-2SC6",
+   "DigiKey_PN": "497-5235-1-ND",
+   "Description": "USB ESD protection, SOT-23-6"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "U2": {
+  "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+  "value": "MCP73831-2",
+  "uuid": "3dd94433-dc9a-4426-93de-eb15fe7b4e0b",
+  "pads": {
+   "1": "CHG_STAT",
+   "2": "GND",
+   "3": "VBAT",
+   "4": "VBUS",
+   "5": "PROG"
+  },
+  "part": "MCP73831",
+  "fields": {
+   "Manufacturer": "Microchip Technology",
+   "MPN": "MCP73831T-2ACI/OT",
+   "DigiKey_PN": "MCP73831T-2ACI/OTCT-ND",
+   "Description": "Li-Po charger, 4.20 V, SOT-23-5"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "U3": {
+  "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+  "value": "RT9080-33GJ5",
+  "uuid": "d1edc330-4608-4e54-a7cd-1768a947f337",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND",
+   "3": "VBAT",
+   "5": "3V3"
+  },
+  "part": "RT9080",
+  "fields": {
+   "Manufacturer": "Richtek",
+   "MPN": "RT9080-33GJ5",
+   "DigiKey_PN": "1028-1509-1-ND",
+   "Description": "3.3 V 600 mA LDO, 2 uA Iq, SOT-23-5"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {
+   "4": "NC"
+  }
+ },
+ "U4": {
+  "footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+  "value": "MCP2221A",
+  "uuid": "68b6b40d-b29f-46ae-b958-f2bda20f63ca",
+  "pads": {
+   "1": "3V3_USB",
+   "4": "BR_RST",
+   "5": "UART",
+   "6": "BR_TX",
+   "11": "3V3_USB",
+   "12": "USB_DM",
+   "13": "USB_DP",
+   "14": "GND"
+  },
+  "part": "MCP2221A",
+  "fields": {
+   "Manufacturer": "Microchip Technology",
+   "MPN": "MCP2221A-I/SL",
+   "DigiKey_PN": "MCP2221A-I/SL-ND",
+   "Description": "USB 2.0 to UART/I2C bridge, crystal-less, SOIC-14"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {
+   "2": "GP0",
+   "3": "GP1",
+   "7": "GP2",
+   "8": "GP3",
+   "9": "SDA",
+   "10": "SCL"
+  }
+ },
+ "U5": {
+  "footprint": "Package_DFN_QFN:DFN-8-1EP_2x2mm_P0.5mm_EP0.8x1.6mm",
+  "value": "MAX17048",
+  "uuid": "b94ce63f-c047-435a-8d2b-22ae8f333401",
+  "pads": {
+   "1": "GND",
+   "3": "VBAT",
+   "4": "GND",
+   "6": "GND",
+   "7": "SCL",
+   "8": "SDA",
+   "9": "GND"
+  },
+  "part": "MAX17048",
+  "fields": {
+   "Manufacturer": "Analog Devices / Maxim",
+   "MPN": "MAX17048G+T10",
+   "DigiKey_PN": "TBD (verify)",
+   "Description": "1-cell Li+ fuel gauge (ModelGauge), I2C, TDFN-8 2x2"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {
+   "2": "CELL",
+   "5": "~{ALRT}"
+  }
+ },
+ "BT1": {
+  "footprint": "Tumble:BatteryPads_2x2.2x2.8",
+  "value": "Li-Po 1S",
+  "uuid": "92db1b97-2f20-4d6c-aed2-443ca7a22e40",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "LIPO",
+  "fields": {
+   "Manufacturer": "TBD",
+   "MPN": "TBD (1S Li-Po with protection, <= 34 x 25 x 3.5 mm)",
+   "DigiKey_PN": "TBD (verify)",
+   "Description": "1S Li-Po, 150-250 mAh, protection PCB, leads soldered to BT1"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R1": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "5.1k",
+  "uuid": "b001cd9b-4b24-48cb-b3ae-8a22e87be131",
+  "pads": {
+   "1": "CC1",
+   "2": "GND"
+  },
+  "part": "R5k1_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-075K1L",
+   "DigiKey_PN": "311-5.10KLRCT-ND",
+   "Description": "5.1 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R2": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "5.1k",
+  "uuid": "7db969a4-85aa-4a68-89b1-1f78b7d0d9ff",
+  "pads": {
+   "1": "CC2",
+   "2": "GND"
+  },
+  "part": "R5k1_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-075K1L",
+   "DigiKey_PN": "311-5.10KLRCT-ND",
+   "Description": "5.1 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R3": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "10k",
+  "uuid": "e2bf0529-e329-4c23-9d32-0e69304807c5",
+  "pads": {
+   "1": "PROG",
+   "2": "GND"
+  },
+  "part": "R10k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-0710KL",
+   "DigiKey_PN": "311-10.0KLRCT-ND",
+   "Description": "10 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R7": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "1k",
+  "uuid": "686848b9-5acb-4b6b-bb7a-b6982e44a05a",
+  "pads": {
+   "1": "VBUS",
+   "2": "LED_A"
+  },
+  "part": "R1k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-071KL",
+   "DigiKey_PN": "311-1.00KLRCT-ND",
+   "Description": "1 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R6": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "1k",
+  "uuid": "0624b450-d0da-4ec5-81dd-5ad02b09e83e",
+  "pads": {
+   "1": "BR_TX",
+   "2": "UART"
+  },
+  "part": "R1k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-071KL",
+   "DigiKey_PN": "311-1.00KLRCT-ND",
+   "Description": "1 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R8": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "10k",
+  "uuid": "57c19774-30f6-4019-9f52-a7282d82432a",
+  "pads": {
+   "1": "3V3_USB",
+   "2": "BR_RST"
+  },
+  "part": "R10k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-0710KL",
+   "DigiKey_PN": "311-10.0KLRCT-ND",
+   "Description": "10 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R9": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "100k",
+  "uuid": "5ea3e05c-1c02-4637-a14d-81dabda93816",
+  "pads": {
+   "1": "3V3",
+   "2": "BR_PG"
+  },
+  "part": "R100k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-07100KL",
+   "DigiKey_PN": "311-100KLRCT-ND",
+   "Description": "100 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R10": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "10k",
+  "uuid": "767bea02-8ec7-45ac-898c-48b1c53be57c",
+  "pads": {
+   "1": "VBUS",
+   "2": "BR_G"
+  },
+  "part": "R10k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-0710KL",
+   "DigiKey_PN": "311-10.0KLRCT-ND",
+   "Description": "10 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R11": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "100k",
+  "uuid": "140cbb07-5b85-4a62-8343-c233f68fa840",
+  "pads": {
+   "1": "BR_G",
+   "2": "GND"
+  },
+  "part": "R100k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-07100KL",
+   "DigiKey_PN": "311-100KLRCT-ND",
+   "Description": "100 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C1": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "4.7uF",
+  "uuid": "b1c3ce78-e4ce-4c66-92dc-8934158d0f9d",
+  "pads": {
+   "1": "VBUS",
+   "2": "GND"
+  },
+  "part": "C4u7_0402",
+  "fields": {
+   "Manufacturer": "TDK",
+   "MPN": "C1005X5R1A475K050BC",
+   "DigiKey_PN": "445-13820-1-ND",
+   "Description": "4.7 uF 10 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C2": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "4.7uF",
+  "uuid": "2b13f3e4-439c-4943-ad78-be625b9ce52f",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C4u7_0402",
+  "fields": {
+   "Manufacturer": "TDK",
+   "MPN": "C1005X5R1A475K050BC",
+   "DigiKey_PN": "445-13820-1-ND",
+   "Description": "4.7 uF 10 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C3": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "1uF",
+  "uuid": "0d1fc821-34ad-4e0b-81bf-20432bddff13",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C1u_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A105KA5NQNC",
+   "DigiKey_PN": "1276-1445-1-ND",
+   "Description": "1 uF 25 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C4": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "1uF",
+  "uuid": "9c424e07-917e-44f5-8ae9-529b993a5eb3",
+  "pads": {
+   "1": "3V3",
+   "2": "GND"
+  },
+  "part": "C1u_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A105KA5NQNC",
+   "DigiKey_PN": "1276-1445-1-ND",
+   "Description": "1 uF 25 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C5": {
+  "footprint": "Capacitor_SMD:C_0603_1608Metric",
+  "value": "10uF",
+  "uuid": "106ffb95-9049-4374-bd21-f1349811ce23",
+  "pads": {
+   "1": "3V3",
+   "2": "GND"
+  },
+  "part": "C10u_0603",
+  "fields": {
+   "Manufacturer": "Taiyo Yuden",
+   "MPN": "LMK107BBJ106MALT",
+   "DigiKey_PN": "587-3258-1-ND",
+   "Description": "10 uF 10 V X5R 0603"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C6": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "100nF",
+  "uuid": "5d97be48-63b8-46b5-901e-f78a6cbdb82c",
+  "pads": {
+   "1": "VBUS",
+   "2": "GND"
+  },
+  "part": "C100n_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05B104KO5NNNC",
+   "DigiKey_PN": "1276-1001-1-ND",
+   "Description": "100 nF 16 V X7R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C7": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "100nF",
+  "uuid": "1384dbe0-1fee-45de-b305-67bd3338522a",
+  "pads": {
+   "1": "3V3_USB",
+   "2": "GND"
+  },
+  "part": "C100n_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05B104KO5NNNC",
+   "DigiKey_PN": "1276-1001-1-ND",
+   "Description": "100 nF 16 V X7R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C8": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "470nF",
+  "uuid": "b4f20651-d390-445f-a143-12d8d3030038",
+  "pads": {
+   "1": "3V3_USB",
+   "2": "GND"
+  },
+  "part": "C470n_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A474KO5NNNC",
+   "DigiKey_PN": "TBD (verify)",
+   "Description": "470 nF 16 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C9": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "100nF",
+  "uuid": "98bf647b-ebdf-4a99-8540-925eb3801fe3",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C100n_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05B104KO5NNNC",
+   "DigiKey_PN": "1276-1001-1-ND",
+   "Description": "100 nF 16 V X7R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D2": {
+  "footprint": "LED_SMD:LED_0603_1608Metric",
+  "value": "RED",
+  "uuid": "a0083c03-7dcf-4f16-823b-0e1a27e1597d",
+  "pads": {
+   "1": "CHG_STAT",
+   "2": "LED_A"
+  },
+  "part": "LED_RED_0603",
+  "fields": {
+   "Manufacturer": "Lite-On",
+   "MPN": "LTST-C191KRKT",
+   "DigiKey_PN": "160-1447-1-ND",
+   "Description": "red LED 0603 (charge indicator)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "Q1": {
+  "footprint": "Package_TO_SOT_SMD:SOT-23",
+  "value": "AO3401A",
+  "uuid": "a0ed5a91-fb8b-416f-b7ac-411b64bb3903",
+  "pads": {
+   "1": "BR_PG",
+   "2": "3V3",
+   "3": "3V3_USB"
+  },
+  "part": "AO3401A",
+  "fields": {
+   "Manufacturer": "Alpha & Omega Semiconductor",
+   "MPN": "AO3401A",
+   "DigiKey_PN": "785-1001-1-ND",
+   "Description": "P-MOSFET -30 V -4 A, SOT-23"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "Q2": {
+  "footprint": "Package_TO_SOT_SMD:SOT-23",
+  "value": "2N7002",
+  "uuid": "7624951d-d496-4039-bd0f-c93c3bb8ff3e",
+  "pads": {
+   "1": "BR_G",
+   "2": "GND",
+   "3": "BR_PG"
+  },
+  "part": "2N7002",
+  "fields": {
+   "Manufacturer": "onsemi",
+   "MPN": "2N7002LT1G",
+   "DigiKey_PN": "2N7002LT1GOSCT-ND",
+   "Description": "N-MOSFET 60 V 115 mA, SOT-23"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "TP1": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "SWDIO",
+  "uuid": "d973d46f-d5af-4cf7-9cac-67ffb996b73a",
+  "pads": {
+   "1": "SWDIO"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "TP2": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "SWCLK",
+  "uuid": "19fab515-a5c1-46ab-aed7-2eade06a8a98",
+  "pads": {
+   "1": "SWCLK"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "TP3": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "3V3",
+  "uuid": "c783de2c-b80c-4db0-ac57-9d5a00172826",
+  "pads": {
+   "1": "3V3"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "TP4": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "GND",
+  "uuid": "efb769b7-6fe8-4593-9fb6-3f37ee5bc050",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "TP5": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "VBAT",
+  "uuid": "82114b69-6cd0-47a3-af0a-39cba718638f",
+  "pads": {
+   "1": "VBAT"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "TP6": {
+  "footprint": "Tumble:GoldDot_D3.0",
+  "value": "VBUS",
+  "uuid": "c102733b-bb53-4d7a-99f8-0e17e900c901",
+  "pads": {
+   "1": "VBUS"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "P1": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "VBAT",
+  "uuid": "43ee2a3f-b497-44aa-acf9-2346e1a9e68d",
+  "pads": {
+   "1": "VBAT"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P2": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "GND",
+  "uuid": "fe75462e-9b05-4e0d-b2c0-231137f1520a",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P3": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "SDA",
+  "uuid": "cec438ad-7d33-418c-9d30-58cc81b717df",
+  "pads": {
+   "1": "SDA"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P4": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "SCL",
+  "uuid": "05ededb2-f1b8-488e-bc98-37b224a5888b",
+  "pads": {
+   "1": "SCL"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P5": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "SWDIO",
+  "uuid": "050f886e-2cfa-4e7c-a7e3-051a64be1a11",
+  "pads": {
+   "1": "SWDIO"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P6": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "SWCLK",
+  "uuid": "d6433e47-8f6f-49e8-8ccd-aff4a993e3c7",
+  "pads": {
+   "1": "SWCLK"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P7": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "3V3",
+  "uuid": "74b63b6d-209e-42ce-b982-04ac5164db64",
+  "pads": {
+   "1": "3V3"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P8": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "GND",
+  "uuid": "ce636fe3-fb2d-4663-84e5-1dcaff520337",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P9": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "VBAT",
+  "uuid": "d2edd6a2-62b0-4b3f-a64d-c1357480142c",
+  "pads": {
+   "1": "VBAT"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "P10": {
+  "footprint": "Tumble:Pogo_MillMax_0900-2",
+  "value": "UART",
+  "uuid": "2a240513-fa05-49a4-be81-f9e60a320565",
+  "pads": {
+   "1": "UART"
+  },
+  "part": "POGO",
+  "fields": {
+   "Manufacturer": "Mill-Max",
+   "MPN": "0900-2-15-20-75-14-11-0",
+   "DigiKey_PN": "ED9002-ND",
+   "Description": "SMT spring pin, 5.00 mm max / 4.30 mm recommended working height, 60 gf mid-stroke (verify stroke vs 4.5 mm gap)"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "H1": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "e8c69677-d340-43b1-84d1-c2cac2e5b88d",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H2": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "695a1864-fd88-4f7b-9f19-2692a2c4f1e9",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H3": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "12128540-373a-49eb-83f5-f59a4874017c",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H4": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "97d9feef-27b2-4dc8-99d4-7f570302226d",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ }
+}

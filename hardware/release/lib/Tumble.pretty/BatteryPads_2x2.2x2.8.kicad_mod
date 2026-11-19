@@ -1,0 +1,56 @@
+(footprint "BatteryPads_2x2.2x2.8"
+	(version 20241229)
+	(generator "tinydie-tumble")
+	(generator_version "1.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c6ee3e5a-8c54-50ba-bff6-fd9b95094df9")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "BatteryPads_2x2.2x2.8"
+		(at 0 2 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0bc6464e-e48c-5be1-935f-a729a13a199e")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(descr "Solder pads for the LiPo leads: 1 = BAT+, 2 = BAT-")
+	(attr smd)
+	(pad "1" smd rect
+		(at -1.6 0)
+		(size 2.2 2.8)
+		(layers "F.Cu" "F.Mask")
+		(uuid "fd9cf44b-01ad-5eba-88fc-59515c6f00ca")
+	)
+	(pad "2" smd rect
+		(at 1.6 0)
+		(size 2.2 2.8)
+		(layers "F.Cu" "F.Mask")
+		(uuid "fd3a2255-a81b-5013-aac2-d80d578889f7")
+	)
+	(fp_rect
+		(start -2.95 -1.65)
+		(end 2.95 1.65)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "d383e52e-49bb-59ca-8e93-0fbf38d10d30")
+	)
+	(embedded_fonts no)
+)

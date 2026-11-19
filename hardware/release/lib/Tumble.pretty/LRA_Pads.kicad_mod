@@ -1,0 +1,56 @@
+(footprint "LRA_Pads"
+	(version 20241229)
+	(generator "tinydie-tumble")
+	(generator_version "1.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c6ee3e5a-8c54-50ba-bff6-fd9b95094df9")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(property "Value" "LRA_Pads"
+		(at 0 2 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e89e22a2-8631-5084-85a5-537934318949")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(descr "Solder pads for the LRA leads (actuator body is glued beside them)")
+	(attr smd)
+	(pad "1" smd rect
+		(at -1 0)
+		(size 1.4 1.8)
+		(layers "F.Cu" "F.Mask")
+		(uuid "495917b6-c679-515a-83a4-a221e44cab88")
+	)
+	(pad "2" smd rect
+		(at 1 0)
+		(size 1.4 1.8)
+		(layers "F.Cu" "F.Mask")
+		(uuid "ec1e59ee-caf9-5f06-a7e3-ab87b124b330")
+	)
+	(fp_rect
+		(start -1.95 -1.15)
+		(end 1.95 1.15)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "2b1a9241-a90a-50ae-8d35-c8e21ad24021")
+	)
+	(embedded_fonts no)
+)

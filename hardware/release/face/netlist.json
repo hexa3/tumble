@@ -1,0 +1,2750 @@
+{
+ "D1": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "89b4e5ad-022d-4152-99e2-ef3febcb5854",
+  "pads": {
+   "1": "SW1",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D2": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "e1ceca94-d5c4-425b-82c3-963c095bd799",
+  "pads": {
+   "1": "SW2",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D3": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6468c29c-834c-4d8d-94e6-12782c8f0afd",
+  "pads": {
+   "1": "SW3",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D4": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "11fcd063-05e2-449f-86c0-16d3eef8eb6e",
+  "pads": {
+   "1": "SW4",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D5": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "81d8fb7e-9e93-45f6-ad98-6485af9bce37",
+  "pads": {
+   "1": "SW5",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D6": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "405cf8f3-ff20-46f3-843d-69d55aed4dd9",
+  "pads": {
+   "1": "SW6",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D7": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ef475704-b7d0-4eea-8bd9-cbaa1871bae1",
+  "pads": {
+   "1": "SW7",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D8": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "4f66f2d4-4ea6-4d83-b059-aec90de1d971",
+  "pads": {
+   "1": "SW8",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D9": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "5440ca16-2bf3-401b-9ba3-f2da8abc64e5",
+  "pads": {
+   "1": "SW9",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D10": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f64e52c8-8e2d-4678-abdc-95df0f6bc2f2",
+  "pads": {
+   "1": "SW10",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D11": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "e18b62ab-b4e4-47fc-aab8-45d6ebadfeaa",
+  "pads": {
+   "1": "SW11",
+   "2": "CS11"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D12": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "67a01514-79ae-49d2-9299-0fdca94ac70f",
+  "pads": {
+   "1": "SW1",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D13": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "731cd43f-052e-456f-b62f-a795b91f7e07",
+  "pads": {
+   "1": "SW2",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D14": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "31b5583d-57df-45c4-8e7c-64bae39c67ec",
+  "pads": {
+   "1": "SW3",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D15": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "39ac8e2f-cb08-40a6-915a-517bc41fca62",
+  "pads": {
+   "1": "SW4",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D16": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "7bb68ef8-9070-4646-9543-c882f027e867",
+  "pads": {
+   "1": "SW5",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D17": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6d6b82a1-5e88-4d75-9436-10655ce27b70",
+  "pads": {
+   "1": "SW6",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D18": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6466120d-e51a-4b89-99bd-7e6ac536931d",
+  "pads": {
+   "1": "SW7",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D19": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "d0d5bd29-7910-444a-8226-042e46b4ea3f",
+  "pads": {
+   "1": "SW8",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D20": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1f3bfce0-37da-43bf-b6bc-54f3bf7a882e",
+  "pads": {
+   "1": "SW9",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D21": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "b7b72f99-581c-4a3d-871b-9bad7873575e",
+  "pads": {
+   "1": "SW10",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D22": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "186094f7-1864-4570-9636-f1da333957ca",
+  "pads": {
+   "1": "SW11",
+   "2": "CS10"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D23": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6302bcc0-d22f-474f-9dca-136f8a12dbac",
+  "pads": {
+   "1": "SW1",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D24": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "bdeb3d36-f586-4c67-a4a1-d99a5b815b03",
+  "pads": {
+   "1": "SW2",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D25": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ef445801-e0cf-4352-a2d5-81196b5b610a",
+  "pads": {
+   "1": "SW3",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D26": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6a8477d9-d007-4f56-9e10-a9593b04942d",
+  "pads": {
+   "1": "SW4",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D27": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "39e6c60d-585f-433f-83e4-de486f1391a8",
+  "pads": {
+   "1": "SW5",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D28": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f6a3bb11-b83e-4a25-a785-44bfaf0af0e4",
+  "pads": {
+   "1": "SW6",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D29": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "7658d107-d437-4f4c-8fb5-25f0d2474273",
+  "pads": {
+   "1": "SW7",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D30": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "bdc9fb18-b21d-47b7-bb1c-532f3f88c18d",
+  "pads": {
+   "1": "SW8",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D31": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "3fc44161-9847-417d-8d39-27166b9feeb7",
+  "pads": {
+   "1": "SW9",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D32": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "07ac153d-7626-4bcf-96fd-555670a799b7",
+  "pads": {
+   "1": "SW10",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D33": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "7539b1e0-9bc3-4cb5-b0d0-ada9ecc9560d",
+  "pads": {
+   "1": "SW11",
+   "2": "CS9"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D34": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "2e299f5a-90c5-4254-b94a-ec4c29cbb2f8",
+  "pads": {
+   "1": "SW1",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D35": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "a8a305b5-4db8-4af2-bbf2-2b08279d3d78",
+  "pads": {
+   "1": "SW2",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D36": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "2a2b0182-7adc-41c6-94d4-776034cef857",
+  "pads": {
+   "1": "SW3",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D37": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "b21cdb85-fd13-491a-af92-0ada088e78d5",
+  "pads": {
+   "1": "SW4",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D38": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "5cf0d902-d121-4c8a-b14f-e60931a99a28",
+  "pads": {
+   "1": "SW5",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D39": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "9961c078-330d-4a27-aa01-85e6ab27f617",
+  "pads": {
+   "1": "SW6",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D40": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "585a7aec-74e3-4cce-8ca0-1a34d5d601b1",
+  "pads": {
+   "1": "SW7",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D41": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ba3a7887-f529-4cab-8948-30ca27bb0ac7",
+  "pads": {
+   "1": "SW8",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D42": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "74aad6c1-a6c2-4a57-adb4-ac95581eeebe",
+  "pads": {
+   "1": "SW9",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D43": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "b0ffabb0-9ca0-42e2-b63c-f3c75a1324b2",
+  "pads": {
+   "1": "SW10",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D44": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "fa269c80-b40a-4085-b912-a770719dd5b7",
+  "pads": {
+   "1": "SW11",
+   "2": "CS8"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D45": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "01831b47-c0f1-4775-ae96-ade2942fd26d",
+  "pads": {
+   "1": "SW1",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D46": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f59390ba-1bd2-4038-8d76-60e18da10457",
+  "pads": {
+   "1": "SW2",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D47": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "28e8daa8-7784-460f-a03f-dff1180cbff7",
+  "pads": {
+   "1": "SW3",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D48": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "9c21cf5c-1514-4059-b723-5328ffe56e30",
+  "pads": {
+   "1": "SW4",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D49": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "12c6a440-af36-442b-b2af-dadea8a97c1e",
+  "pads": {
+   "1": "SW5",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D50": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "047e7a0b-9e82-47e7-8779-c56313072375",
+  "pads": {
+   "1": "SW6",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D51": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "577cb839-88a8-441e-8212-0fe57f7d26a0",
+  "pads": {
+   "1": "SW7",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D52": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "09939eda-a771-4101-a3f1-7a4d5c5a55dd",
+  "pads": {
+   "1": "SW8",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D53": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "dc7ba465-03fb-40cb-90af-ecc9c5ebe07d",
+  "pads": {
+   "1": "SW9",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D54": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "bfd81292-5ffd-4c00-b0bf-bbc3e2fb094c",
+  "pads": {
+   "1": "SW10",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D55": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "0dee2282-5ba3-46a4-8f4b-91f2dac3980d",
+  "pads": {
+   "1": "SW11",
+   "2": "CS7"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D56": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "3af19b85-993d-46ca-8153-8310374855dc",
+  "pads": {
+   "1": "SW1",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D57": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ab02c2dd-e3ae-4f30-9ce6-7383960129e7",
+  "pads": {
+   "1": "SW2",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D58": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "da0404b1-0d79-414d-888b-33a0f181967d",
+  "pads": {
+   "1": "SW3",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D59": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ed2c950a-3f08-4c4f-b75b-cce6f63aef3e",
+  "pads": {
+   "1": "SW4",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D60": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "adb5877c-50bd-44f1-99f0-449205516b3b",
+  "pads": {
+   "1": "SW5",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D61": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c64ce7d5-08e8-4ba6-b6c8-146f7505918b",
+  "pads": {
+   "1": "SW6",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D62": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "88899d83-83e3-4a6b-9723-d98572a11102",
+  "pads": {
+   "1": "SW7",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D63": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "337d469a-040e-408d-83f5-c8c44217f781",
+  "pads": {
+   "1": "SW8",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D64": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1ce7410b-1547-484e-a75b-2804c4796e9d",
+  "pads": {
+   "1": "SW9",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D65": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c902b27f-4d24-45a4-9b7d-da5b2a5cb00b",
+  "pads": {
+   "1": "SW10",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D66": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "a45eadbd-9eb3-4953-bb5d-742eee5e7e3d",
+  "pads": {
+   "1": "SW11",
+   "2": "CS6"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D67": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f7da99ef-d701-4306-b6a9-86bd5a23ff1f",
+  "pads": {
+   "1": "SW1",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D68": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "4a651f1a-6689-445e-bb1d-48e2c17e48e7",
+  "pads": {
+   "1": "SW2",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D69": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "350809c7-20ad-438d-ac66-b590c5569516",
+  "pads": {
+   "1": "SW3",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D70": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "45147b14-2f46-44d6-bbc1-24012d8a1655",
+  "pads": {
+   "1": "SW4",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D71": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "543c1ba3-c7b2-490f-8ef8-3a39f16154ed",
+  "pads": {
+   "1": "SW5",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D72": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "243ca903-4ea3-4ba0-9576-1a9966b2f0d4",
+  "pads": {
+   "1": "SW6",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D73": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "13cca9bb-1db2-470c-b0df-1edd18f90757",
+  "pads": {
+   "1": "SW7",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D74": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1a91d72e-cc80-446b-b2d0-4faea7cc1933",
+  "pads": {
+   "1": "SW8",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D75": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f86c0287-e468-425a-9363-9a49948df2e6",
+  "pads": {
+   "1": "SW9",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D76": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "b99a10f5-c6ec-4e29-b015-4163532f1e54",
+  "pads": {
+   "1": "SW10",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D77": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f2497250-3006-4ba5-ae8f-913ebf6a5454",
+  "pads": {
+   "1": "SW11",
+   "2": "CS5"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D78": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c438eeb8-f27c-4952-a2b4-b23417ad1fb0",
+  "pads": {
+   "1": "SW1",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D79": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6c740624-2e69-4a62-9812-31bcc8845d9c",
+  "pads": {
+   "1": "SW2",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D80": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "213d3719-9925-4c52-8710-473f8f64cbfb",
+  "pads": {
+   "1": "SW3",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D81": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "e6f1b11e-5889-40f1-a045-f004d5ddd45d",
+  "pads": {
+   "1": "SW4",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D82": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "f0c0a1df-4b00-4c3b-8439-342d58dfe71d",
+  "pads": {
+   "1": "SW5",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D83": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c4caa154-db57-4b1a-a0a4-cfc336d58f79",
+  "pads": {
+   "1": "SW6",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D84": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "47524448-866b-4d3b-8038-6c6b8f304ee7",
+  "pads": {
+   "1": "SW7",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D85": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "32899bad-34e1-4389-b210-27e6b5ae34f8",
+  "pads": {
+   "1": "SW8",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D86": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6eb40fe7-8b99-4694-9890-7d9d5b8e38c8",
+  "pads": {
+   "1": "SW9",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D87": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c6b432a1-db44-49fb-8d6f-75c18f7b0731",
+  "pads": {
+   "1": "SW10",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D88": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "233adead-b311-4db5-9c01-8a9b2782179f",
+  "pads": {
+   "1": "SW11",
+   "2": "CS4"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D89": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "9ddd2161-84f3-4b67-9362-923b7f5753b6",
+  "pads": {
+   "1": "SW1",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D90": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1e201e02-72b1-4cb1-8e34-96e7daf536f9",
+  "pads": {
+   "1": "SW2",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D91": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "a9132161-d2a5-4a05-8110-3faa082364b4",
+  "pads": {
+   "1": "SW3",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D92": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "025aa828-ec28-4964-a537-db803da25413",
+  "pads": {
+   "1": "SW4",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D93": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "63cf8ad0-f6ca-46ba-aca0-94d4440b1740",
+  "pads": {
+   "1": "SW5",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D94": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "0c06733d-6995-4e30-a3de-5ae9c8e1d172",
+  "pads": {
+   "1": "SW6",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D95": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "98bf889d-6e1b-4626-b003-ece54d77992c",
+  "pads": {
+   "1": "SW7",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D96": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "65bb1e40-641b-4333-adda-b510b03b6592",
+  "pads": {
+   "1": "SW8",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D97": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6e1d79a4-6c61-4954-8067-cee29d9f6234",
+  "pads": {
+   "1": "SW9",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D98": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "da7422d4-cf0e-44d6-a356-b9e0e46a6f25",
+  "pads": {
+   "1": "SW10",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D99": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "442aa5eb-0b1a-4f1b-9744-0bb1ee54725c",
+  "pads": {
+   "1": "SW11",
+   "2": "CS3"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D100": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1a358132-e8ea-4891-a440-7bb919cf2eeb",
+  "pads": {
+   "1": "SW1",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D101": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "9a68755f-ab6a-4afc-8a4d-c33d2a33bd7e",
+  "pads": {
+   "1": "SW2",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D102": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "a0ef9e67-59b3-461b-a930-3a055e4049ee",
+  "pads": {
+   "1": "SW3",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D103": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "6bc342b4-a309-435e-b0d4-5f36dac7da2d",
+  "pads": {
+   "1": "SW4",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D104": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "ed88c623-fc09-4e72-a5ca-0d797730ded2",
+  "pads": {
+   "1": "SW5",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D105": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "0914c0a8-f0ce-48a4-b554-47ab0acadc18",
+  "pads": {
+   "1": "SW6",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D106": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "9326d352-769e-472c-aba3-880d54984814",
+  "pads": {
+   "1": "SW7",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D107": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "01ba8b22-4141-46c5-859a-58a1bdaabf6d",
+  "pads": {
+   "1": "SW8",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D108": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "89baa581-b0a5-47dd-bc3c-0146a0a8fcc6",
+  "pads": {
+   "1": "SW9",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D109": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "3c89d4f9-e396-4330-aeb6-5ad50d24c267",
+  "pads": {
+   "1": "SW10",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D110": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "827e8489-6961-41f0-bfe3-43de122b7afe",
+  "pads": {
+   "1": "SW11",
+   "2": "CS2"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D111": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "47ffadb6-0eb3-47fa-84a1-1cd0bdea1bb1",
+  "pads": {
+   "1": "SW1",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D112": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "593fddbc-639e-4306-b9f1-9f44f4df0d3b",
+  "pads": {
+   "1": "SW2",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D113": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "e729e309-8b54-491d-869c-abe149e9ffe1",
+  "pads": {
+   "1": "SW3",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D114": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "22601f13-4816-45e5-8731-aa17f2b85fec",
+  "pads": {
+   "1": "SW4",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D115": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "5b497b95-4e12-4ce7-9cca-e60fa7c36a2c",
+  "pads": {
+   "1": "SW5",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D116": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "70dfbbc5-65e4-494f-845c-21f925842a5a",
+  "pads": {
+   "1": "SW6",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D117": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "7ae2595f-9452-4b08-9506-971e7128db17",
+  "pads": {
+   "1": "SW7",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D118": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "c188d54f-9e84-4869-a9a7-6f4c78bcc2da",
+  "pads": {
+   "1": "SW8",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D119": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "2cad1bdf-1558-4683-b4a3-d3e016bcc133",
+  "pads": {
+   "1": "SW9",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D120": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "1a203e36-9231-4d43-b168-f7e826a03c27",
+  "pads": {
+   "1": "SW10",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "D121": {
+  "footprint": "LED_SMD:LED_0402_1005Metric",
+  "value": "YEL",
+  "uuid": "71e07ab4-9f3c-4321-b0bb-b9706f4ce824",
+  "pads": {
+   "1": "SW11",
+   "2": "CS1"
+  },
+  "part": "LED",
+  "fields": {
+   "Manufacturer": "Kingbright",
+   "MPN": "APHHS1005SYCK",
+   "DigiKey_PN": "754-1105-1-ND",
+   "Description": "LED yellow 590 nm, 0402, Vf 2.0 V, 150 mcd @ 20 mA"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "U1": {
+  "footprint": "Package_DFN_QFN:QFN-48-1EP_6x6mm_P0.4mm_EP4.2x4.2mm",
+  "value": "IS31FL3733B",
+  "uuid": "7b1d5c60-f467-4711-9d10-886f4ca7f682",
+  "pads": {
+   "5": "GND",
+   "12": "GND",
+   "20": "VBAT",
+   "29": "VBAT",
+   "34": "GND",
+   "35": "ISET",
+   "37": "VBAT",
+   "38": "VBAT",
+   "39": "3V3",
+   "41": "SDA",
+   "42": "SCL",
+   "43": "GND",
+   "44": "GND",
+   "45": "LED_INTB",
+   "46": "LED_SDB",
+   "47": "GND",
+   "48": "GND",
+   "49": "GND",
+   "2": "SW1",
+   "3": "SW2",
+   "4": "SW3",
+   "6": "SW4",
+   "7": "SW5",
+   "8": "SW6",
+   "9": "SW7",
+   "10": "SW8",
+   "11": "SW9",
+   "13": "SW10",
+   "14": "SW11",
+   "16": "CS1",
+   "17": "CS2",
+   "18": "CS3",
+   "19": "CS4",
+   "21": "CS5",
+   "22": "CS6",
+   "23": "CS7",
+   "24": "CS8",
+   "25": "CS9",
+   "26": "CS10",
+   "27": "CS11"
+  },
+  "part": "IS31FL3733B",
+  "fields": {
+   "Manufacturer": "Lumissil Microsystems",
+   "MPN": "IS31FL3733B-QFLS4-TR",
+   "DigiKey_PN": "TBD (verify)",
+   "Description": "12 x 16 matrix LED driver, 8-bit PWM per LED, I2C, QFN-48 6x6 P0.4"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {
+   "1": "NC",
+   "15": "SW12",
+   "28": "CS12",
+   "30": "CS13",
+   "31": "CS14",
+   "32": "CS15",
+   "33": "CS16",
+   "36": "NC",
+   "40": "SYNC"
+  }
+ },
+ "R1": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "20k",
+  "uuid": "69de1d12-9daa-47a9-a0eb-27a9f3cc5d7b",
+  "pads": {
+   "1": "ISET",
+   "2": "GND"
+  },
+  "part": "R20k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-0720KL",
+   "DigiKey_PN": "311-20.0KLRCT-ND",
+   "Description": "20 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "R2": {
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "value": "100k",
+  "uuid": "335dba63-f982-4b34-93db-81412c921916",
+  "pads": {
+   "1": "LED_SDB",
+   "2": "GND"
+  },
+  "part": "R100k_0402",
+  "fields": {
+   "Manufacturer": "YAGEO",
+   "MPN": "RC0402FR-07100KL",
+   "DigiKey_PN": "311-100KLRCT-ND",
+   "Description": "100 k 1 % 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C1": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "1uF",
+  "uuid": "8e103b1f-5cbc-40f9-93a5-811e005e40e6",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C1u_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A105KA5NQNC",
+   "DigiKey_PN": "1276-1445-1-ND",
+   "Description": "1 uF 25 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C2": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "100nF",
+  "uuid": "81a0b767-0d4f-459b-91a9-36997f5fa30c",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C100n_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05B104KO5NNNC",
+   "DigiKey_PN": "1276-1001-1-ND",
+   "Description": "100 nF 16 V X7R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C3": {
+  "footprint": "Capacitor_SMD:C_0603_1608Metric",
+  "value": "10uF",
+  "uuid": "36b6f9d5-28ca-411a-bcd0-d3d2bc0b920b",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C10u_0603",
+  "fields": {
+   "Manufacturer": "Taiyo Yuden",
+   "MPN": "LMK107BBJ106MALT",
+   "DigiKey_PN": "587-3258-1-ND",
+   "Description": "10 uF 10 V X5R 0603"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C4": {
+  "footprint": "Capacitor_SMD:C_0603_1608Metric",
+  "value": "10uF",
+  "uuid": "e93e4c92-b990-4b0a-8f6a-09c3ac94ecae",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C10u_0603",
+  "fields": {
+   "Manufacturer": "Taiyo Yuden",
+   "MPN": "LMK107BBJ106MALT",
+   "DigiKey_PN": "587-3258-1-ND",
+   "Description": "10 uF 10 V X5R 0603"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C5": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "1uF",
+  "uuid": "527d2a6b-5636-4c95-a22d-d776c96a44cc",
+  "pads": {
+   "1": "VBAT",
+   "2": "GND"
+  },
+  "part": "C1u_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A105KA5NQNC",
+   "DigiKey_PN": "1276-1445-1-ND",
+   "Description": "1 uF 25 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "C7": {
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "value": "1uF",
+  "uuid": "6dd7a22b-29c9-4779-bc7c-cce055107f6c",
+  "pads": {
+   "1": "3V3",
+   "2": "GND"
+  },
+  "part": "C1u_0402",
+  "fields": {
+   "Manufacturer": "Samsung Electro-Mechanics",
+   "MPN": "CL05A105KA5NQNC",
+   "DigiKey_PN": "1276-1445-1-ND",
+   "Description": "1 uF 25 V X5R 0402"
+  },
+  "dnp": false,
+  "in_bom": true,
+  "nc_pins": {}
+ },
+ "X1": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "LED_SDB",
+  "uuid": "01df7dab-67e1-43f5-84ae-950f06fe35b7",
+  "pads": {
+   "1": "LED_SDB"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X2": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "LED_INTB",
+  "uuid": "c8a696f8-e6ed-4637-8dc8-0cc6dc3698e4",
+  "pads": {
+   "1": "LED_INTB"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X3": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "SCL",
+  "uuid": "8a2f571f-4eeb-4470-866a-096641a97557",
+  "pads": {
+   "1": "SCL"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X4": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "SDA",
+  "uuid": "d0e8d854-73f5-46de-880b-7424affc0c14",
+  "pads": {
+   "1": "SDA"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X5": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "3V3",
+  "uuid": "3251ed2d-8bc3-4c3c-810c-c9bca1aa4b17",
+  "pads": {
+   "1": "3V3"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X6": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "VBAT",
+  "uuid": "59bec7e3-10e6-4d8b-87f6-15f382ceef1c",
+  "pads": {
+   "1": "VBAT"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X7": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "GND",
+  "uuid": "8d6d8277-d840-4673-87e4-cb73d0cae166",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X8": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "GND",
+  "uuid": "82e82d12-6aa2-407a-a69a-1f99d65596f8",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X9": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "GND",
+  "uuid": "8b00e7d7-f273-4367-854c-d4c99fd89a7b",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "X10": {
+  "footprint": "Tumble:PogoLand_D2.2",
+  "value": "GND",
+  "uuid": "8827716b-92ce-4613-925b-6c66517deedb",
+  "pads": {
+   "1": "GND"
+  },
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H1": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "662546f1-7628-40b4-90a9-83cc149b2cce",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H2": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "81b4eaf7-018d-4b27-ab7b-402c843ed674",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H3": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "4d444812-470e-4419-bd67-4116f0d3b31b",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ },
+ "H4": {
+  "footprint": "MountingHole:MountingHole_2.2mm_M2",
+  "value": "M2",
+  "uuid": "cd71e58d-0602-4507-b24d-e6fe6bd05d33",
+  "pads": {},
+  "part": "",
+  "fields": {
+   "Manufacturer": "N/A",
+   "MPN": "N/A (PCB copper feature, not a part)",
+   "DigiKey_PN": "N/A"
+  },
+  "dnp": false,
+  "in_bom": false,
+  "nc_pins": {}
+ }
+}

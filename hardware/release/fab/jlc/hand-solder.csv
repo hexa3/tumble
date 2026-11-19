@@ -1,0 +1,5 @@
+Board,References,Part,Why
+core,M1,VG0832022D,Vybronics actuator from DigiKey: not stocked by JLCPCB; two wire pads
+core,P1 P2 P3 P4 P5 P6 P7 P8 P9 P10,0900-2-15-20-75-14-11-0,"Mill-Max spring pins from DigiKey: their height sets the board gap, so no substitute"
+base,BT1,"TBD (1S Li-Po with protection, <= 34 x 25 x 3.5 mm)",battery: two wire pads
+base,P1 P2 P3 P4 P5 P6 P7 P8 P9 P10,0900-2-15-20-75-14-11-0,"Mill-Max spring pins from DigiKey: their height sets the board gap, so no substitute"
