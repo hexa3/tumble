@@ -455,3 +455,153 @@ class PcbBuilder:
                     "F.Fab": pcbnew.F_Fab, "B.Fab": pcbnew.B_Fab}[layer])
         s.SetWidth(pcbnew.FromMM(w))
         self.board.Add(s)
+
+    def zone(self, net, layer, pts, clearance=0.25, priority=0, keepout=False, min_w=0.2):
+        pcbnew = self.pcbnew
+        z = pcbnew.ZONE(self.board)
+        ls = pcbnew.LSET()
+        ls.AddLayer(pcbnew.F_Cu if layer == "F" else pcbnew.B_Cu)
+        z.SetLayerSet(ls)
+        if keepout:
+            z.SetIsRuleArea(True)
+            z.SetDoNotAllowTracks(True)
+            z.SetDoNotAllowVias(True)
+            z.SetDoNotAllowZoneFills(True)
+            z.SetDoNotAllowPads(False)
+            z.SetDoNotAllowFootprints(False)
+            if layer == "both":
+                ls = pcbnew.LSET()
+                ls.AddLayer(pcbnew.F_Cu)
+                ls.AddLayer(pcbnew.B_Cu)
+                z.SetLayerSet(ls)
+        else:
+            z.SetNet(self.net(net))
+            z.SetLocalClearance(pcbnew.FromMM(clearance))
+            z.SetMinThickness(pcbnew.FromMM(min_w))
+            z.SetThermalReliefGap(pcbnew.FromMM(0.3))
+            z.SetThermalReliefSpokeWidth(pcbnew.FromMM(0.4))
+            z.SetPadConnection(pcbnew.ZONE_CONNECTION_THERMAL)
+            z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_ALWAYS)
+            z.SetAssignedPriority(priority)
+        self.zones_made = True
+        ol = z.Outline()
+        ol.NewOutline()
+        for x, y in pts:
+            ol.Append(pcbnew.FromMM(self.ox + x), pcbnew.FromMM(self.oy + y))
+        self.board.Add(z)
+        return z
+
+    def _island_vias(self, b):
+        """Join every ground-pour island to the main ground: repeatedly group the islands of both
+        layers through vias and through-hole pads, and for each group cut off from the largest one
+        add a via where one of its islands lies over the main group's pour on the other layer."""
+        pcbnew = self.pcbnew
+        M = pcbnew.FromMM
+        zones = [b.GetArea(i) for i in range(b.GetAreaCount())]
+        zones = [z for z in zones if z.GetNetname() == "/GND" and not z.GetIsRuleArea()]
+        layers = [L for L in (pcbnew.F_Cu, pcbnew.B_Cu) if any(z.IsOnLayer(L) for z in zones)]
+        if len(layers) < 2:
+            return 0
+        anchors = [p for p, n in self.vias if n == "/GND"]
+        for fp in self.fps.values():
+            for pd in fp.Pads():
+                if pd.GetNetname() == "/GND" and pd.GetAttribute() == pcbnew.PAD_ATTRIB_PTH:
+                    anchors.append((pcbnew.ToMM(pd.GetPosition().x), pcbnew.ToMM(pd.GetPosition().y)))
+        added = 0
+        for _round in range(6):
+            fills = {L: [z for z in zones if z.IsOnLayer(L)][0].GetFilledPolysList(L) for L in layers}
+            parent = {}
+
+            def find(a):
+                while parent.setdefault(a, a) != a:
+                    a = parent[a]
+                return a
+            for L in layers:
+                for i in range(fills[L].OutlineCount()):
+                    find((L, i))
+            for x, y in anchors:
+                hit = [(L, i) for L in layers for i in range(fills[L].OutlineCount())
+                       if fills[L].Contains(pcbnew.VECTOR2I(M(x), M(y)), i)]
+                for h in hit[1:]:
+                    parent[find(hit[0])] = find(h)
+            groups = {}
+            for n in list(parent):
+                groups.setdefault(find(n), []).append(n)
+            if len(groups) <= 1:
+                break
+            area = lambda g: sum(fills[L].Outline(i).Area() for L, i in g)   # noqa: E731
+            main = max(groups.values(), key=area)
+            progress = False
+            for g in groups.values():
+                if g is main:
+                    continue
+                spot = None
+                for L, i in g:
+                    other = [o for o in layers if o != L][0]
+                    targets = [j for (LL, j) in main if LL == other]
+                    bb = fills[L].Outline(i).BBox()
+                    x0, y0 = pcbnew.ToMM(bb.GetLeft()), pcbnew.ToMM(bb.GetTop())
+                    x1, y1 = pcbnew.ToMM(bb.GetRight()), pcbnew.ToMM(bb.GetBottom())
+                    y = y0
+                    while y <= y1 and not spot:
+                        x = x0
+                        while x <= x1:
+                            if any((x - vx) ** 2 + (y - vy) ** 2 < 0.95 ** 2 for (vx, vy), _ in self.vias) or \
+                                    any((x - vx) ** 2 + (y - vy) ** 2 < 0.95 ** 2 for vx, vy in anchors):
+                                x += 0.1
+                                continue
+                            ring = [(x, y)] + [(x + 0.38 * dx, y + 0.38 * dy) for dx, dy in
+                                               ((1, 0), (-1, 0), (0, 1), (0, -1), (.7, .7), (-.7, .7), (.7, -.7), (-.7, -.7))]
+                            if all(fills[L].Contains(pcbnew.VECTOR2I(M(a), M(c)), i) and
+                                   any(fills[other].Contains(pcbnew.VECTOR2I(M(a), M(c)), j) for j in targets)
+                                   for a, c in ring):
+                                spot = (x, y)
+                                break
+                            x += 0.1
+                        y += 0.1
+                    if spot:
+                        break
+                if not spot:
+                    continue
+                v = pcbnew.PCB_VIA(b)
+                v.SetPosition(pcbnew.VECTOR2I(M(spot[0]), M(spot[1])))
+                v.SetDrill(M(0.3))
+                v.SetWidth(M(0.6))
+                v.SetNet(b.FindNet("/GND"))
+                b.Add(v)
+                anchors.append(spot)
+                added += 1
+                progress = True
+            if not progress:
+                break
+            pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+        return added
+
+    def finish(self, clearance=0.16, track=0.25):
+        pcbnew = self.pcbnew
+        ds = self.board.GetDesignSettings()
+        nc = ds.m_NetSettings.GetDefaultNetclass()
+        nc.SetClearance(pcbnew.FromMM(clearance))
+        nc.SetTrackWidth(pcbnew.FromMM(track))
+        nc.SetViaDiameter(pcbnew.FromMM(0.6))
+        nc.SetViaDrill(pcbnew.FromMM(0.3))
+        tb = self.board.GetTitleBlock()
+        tb.SetTitle(self.project)
+        tb.SetRevision("1.0")
+        tb.SetDate("2026-11-10")
+        ds.m_CopperEdgeClearance = pcbnew.FromMM(self.rules.get("edge", 0.4))
+        ds.m_TentViasFront = True
+        ds.m_TentViasBack = True
+        out = os.path.join(self.out_dir, f"{self.project}.kicad_pcb")
+        self.board.Save(out)
+        if self.zones_made:
+            # filling a freshly built board can miss a layer; reload, fill, save again
+            b = pcbnew.LoadBoard(out)
+            pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+            n = self._island_vias(b)
+            if n:
+                pcbnew.ZONE_FILLER(b).Fill(b.Zones())
+                print(f"  island vias: {n}")
+            b.Save(out)
+        write_project(self.project, self.out_dir, **self.rules)
+        return out
