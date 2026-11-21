@@ -252,6 +252,7 @@ def build(first=()):
     for ref, (x, y, r) in place.items():
         pb.place(ref, x, y, r, back=True)
     K.board_label(pb, "A · FACE  1/3", "B", at=(12.6, 23.3))
+    K.tumbling_dice(pb, 0.0, -16.6, side="B")                              # the empty band above the grid
 
     from router import Router
     ox, oy = pb.ox, pb.oy

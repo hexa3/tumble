@@ -350,3 +350,56 @@ def escape_stubs(pb, refs, length=0.7, width=0.2, spread=0.8, gnd_vias=False):
                 ends.setdefault(net, []).append(e)
             done.add((ref, pd.GetNumber()))
     return ends, done
+
+
+# ---------------------------------------------------------------- maker's marks
+# Silkscreen and ENIG lettering only: both are on every board already, so none of this costs anything.
+# Bottom-side drawings take mirror=True so they read left to right from below.
+
+def hex_badge(pb, x, y, r=3.0, side="B", text="hexa3"):
+    """A flat-topped hexagon with `text` in it, in ink.  Registers its area so vias stay out."""
+    layer = side + ".SilkS"
+    pts = [(x + r * math.cos(math.radians(60 * k)), y + r * math.sin(math.radians(60 * k))) for k in range(6)]
+    for a, b in zip(pts, pts[1:] + pts[:1]):
+        pb.silk_line(a, b, w=0.2, layer=layer)
+    pb.text(text, x, y, layer=layer, size=1.0, bold=True)
+    art(pb, side, x - r, y - r, x + r, y + r)
+
+
+_PIPS = {1: [(0, 0)], 2: [(-1, -1), (1, 1)], 3: [(-1, -1), (0, 0), (1, 1)],
+         4: [(-1, -1), (1, -1), (-1, 1), (1, 1)], 5: [(-1, -1), (1, -1), (0, 0), (-1, 1), (1, 1)],
+         6: [(-1, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (1, 1)]}
+
+
+def tumbling_dice(pb, x, y, side="B", size=3.4, step=5.4, mirror=True):
+    """Faces 1..6 in a row, each turned a bit further than the last, bouncing along a baseline."""
+    layer = side + ".SilkS"
+    h, p = size / 2, size * 0.27
+    for k in range(6):
+        cx = x + (k - 2.5) * step * (-1 if mirror else 1)
+        cy = y - (0.9 if k % 2 else 0.0)                              # every other one in the air
+        a = math.radians(18 * k * (-1 if mirror else 1))
+
+        def rot(u, v):
+            return cx + u * math.cos(a) - v * math.sin(a), cy + u * math.sin(a) + v * math.cos(a)
+        c = [rot(-h, -h), rot(h, -h), rot(h, h), rot(-h, h)]
+        for s, t in zip(c, c[1:] + c[:1]):
+            pb.silk_line(s, t, w=0.18, layer=layer)
+        for u, v in _PIPS[k + 1]:
+            pb.silk_circle(*rot(u * p, v * p), 0.28, w=0.1, layer=layer, fill=True)
+
+
+def noise_trace(pb, x1, x2, y, amp=1.1, seed=b"hexa3", side="B", mirror=True):
+    """An avalanche-noise oscilloscope trace whose samples are blake2s(seed), in ink."""
+    import hashlib
+    layer = side + ".SilkS"
+    d = hashlib.blake2s(seed).digest()
+    n = len(d)
+    xs = [x1 + (x2 - x1) * i / (n - 1) for i in range(n)]
+    if mirror:
+        xs = xs[::-1]
+    pts = [(xs[i], y - amp * (d[i] - 127.5) / 127.5) for i in range(n)]
+    for a, b in zip(pts, pts[1:]):
+        pb.silk_line(a, b, w=0.15, layer=layer)
+    pb.silk_line((x1, y), (x2, y), w=0.1, layer=layer)                # the zero line
+    return d

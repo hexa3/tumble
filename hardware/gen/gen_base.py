@@ -146,6 +146,8 @@ def build(first=()):
     K.gold_text(pb, "TINYDIE TUMBLE", 0.0, -17.6, side="B", size=1.8)
     K.gold_text(pb, "REV A · 2026", 0.0, -14.7, side="B", size=0.9)
     K.gold_text(pb, "OPPOSITE FACES SUM TO SEVEN", -17.5, 0.0, side="B", size=0.9, rot=90)
+    K.gold_text(pb, "CREATED BY SHEHERYAR", 17.5, -2.0, side="B", size=0.9, rot=90)
+    K.hex_badge(pb, 0.0, 0.0, side="B")                                    # the "6" face has no centre pip
     K.board_label(pb, "C · BASE  3/3", "B")
     for (x, y), t in zip(DOTS, ["SWDIO", "SWCLK", "3V3", "GND", "VBAT", "VBUS"]):
         pb.text(t, x, y + 2.6, layer="B.SilkS", size=0.7)

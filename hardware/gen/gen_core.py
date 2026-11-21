@@ -218,6 +218,8 @@ def build(first=()):
     for k, ((x, y), t) in enumerate(zip(TP_ROW, labels)):
         pb.text(t, x, y + (-1.6 if k % 2 == 0 else 1.6), layer="B.SilkS", size=0.6)
     pb.text("SWD", 0.0, -14.6, layer="B.SilkS", size=0.8)
+    K.noise_trace(pb, -15.0, 15.0, -18.6, side="B")                       # 32 samples of blake2s("hexa3")
+    pb.text('blake2s("hexa3")', 9.0, -16.0, layer="B.SilkS", size=0.8)
     out_pcb = pb.finish(clearance=0.16, track=0.2)
     if failed:
         print("UNROUTED:", failed)
